@@ -1,8 +1,8 @@
 package com.itwill06.collection.service.car;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
+import java.util.Map.*;
+
 
 public class CarServiceHashMap {
 	
@@ -25,9 +25,11 @@ public class CarServiceHashMap {
 	 */
 	public boolean ipCha(Car inCar) {
 		boolean isSuccess = false;
-		for(int i = 0; i < carMap.size(); i++) {
-			
-		}
+			if(carMap.size()-1 < count) {
+				isSuccess = true;
+				carMap.put(inCar.getNo(), inCar);
+			}
+		
 		return isSuccess;
 	}
 
@@ -35,7 +37,11 @@ public class CarServiceHashMap {
 	 * 1. 전체차량출력
 	 */
 	public void print() {
-		
+		Set<Entry<String,Car>> entrySet = carMap.entrySet();
+		for (Entry<String,Car> entry : entrySet) {
+			Car car = (Car)entry.getValue();
+			car.print();
+		}
 	}
 
 	/*
@@ -70,7 +76,10 @@ public class CarServiceHashMap {
 	 */
 	public Car chulCha(String no, int outTime) {
 		Car removeCar= null;
-		
+		removeCar = carMap.get(no);
+		removeCar.setOutTime(outTime);
+		removeCar.calculateFee();
+		carMap.remove(no);
 		return removeCar;
 	}
 	/*
