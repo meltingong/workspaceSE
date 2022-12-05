@@ -25,7 +25,9 @@ public class CarServiceHashMap {
 	 */
 	public boolean ipCha(Car inCar) {
 		boolean isSuccess = false;
-		
+		for(int i = 0; i < carMap.size(); i++) {
+			
+		}
 		return isSuccess;
 	}
 
