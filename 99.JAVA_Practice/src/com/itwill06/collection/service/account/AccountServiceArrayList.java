@@ -191,7 +191,7 @@ public class AccountServiceArrayList {
 	 */
 
 	public void sortByBalanceAsc() {
-		
+		Collections.sort(accountList, new AccountBalanceAscComparator());
 	}
 
 	/*
@@ -199,7 +199,7 @@ public class AccountServiceArrayList {
 	 * 		Collections.sort();
 	 */
 	public void sortByBalanceDesc() {
-
+		Collections.sort(accountList, new AccountBalanceDescComparator());
 	}
 
 	/*
@@ -229,6 +229,22 @@ public class AccountServiceArrayList {
 		}
 		return deleteAccount;
 	}
+class AccountBalanceDescComparator implements Comparator<Account>{
+
+	@Override
+	public int compare(Account o1, Account o2) {
+		
+		return o2.getBalance()-o1.getBalance();
+	}
 	
+}
+class AccountBalanceAscComparator implements Comparator<Account>{
+
+	@Override
+	public int compare(Account o1, Account o2) {
+		return o1.getBalance()-o2.getBalance();
+	}
+	
+}
 
 }
