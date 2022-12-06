@@ -12,7 +12,7 @@ public class FileOutputStreamMain {
 
 	public static void main(String[] args)throws Exception {
 		
-		FileOutputStream fos = new FileOutputStream("fileOut.dat");
+		FileOutputStream fos = new FileOutputStream(new File("src/bytestream/fileOut.dat"),true);
 		/*
 		 *  65		 --> 00000000|00000000|00000000|01000001
 		 *  66  	 --> 00000000|00000000|00000000|01000010

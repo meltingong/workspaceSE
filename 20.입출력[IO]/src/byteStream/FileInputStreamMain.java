@@ -12,7 +12,7 @@ import java.io.*;
 public class FileInputStreamMain {
 
 	public static void main(String[] args) throws Exception {
-		FileInputStream fis = new FileInputStream("fileOut.dat");
+		FileInputStream fis = new FileInputStream(new File("src/bytestream","fileOut.dat"));
 		
 		/*
 		public abstract int read() throws IOException
