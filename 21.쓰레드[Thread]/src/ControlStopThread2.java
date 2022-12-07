@@ -4,6 +4,13 @@ public class ControlStopThread2 extends Thread {
 	public  ControlStopThread2() {
 		isPlay = true;
 	}
+	
+
+	public void setPlay(boolean isPlay) {
+		this.isPlay = isPlay;
+	}
+
+
 	@Override
 	public void run() {
 		while(isPlay) {
@@ -24,6 +31,6 @@ public class ControlStopThread2 extends Thread {
 			}
 		}
 	return;
-	}
+	}//end run
 	
-}
+}//end class
