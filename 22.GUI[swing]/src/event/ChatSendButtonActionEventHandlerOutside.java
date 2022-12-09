@@ -2,7 +2,7 @@ package event;
 
 import java.awt.event.*;
 
-public class ChatSendButtonActionEventHandler implements ActionListener{
+public class ChatSendButtonActionEventHandlerOutside implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

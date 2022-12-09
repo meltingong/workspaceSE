@@ -1,6 +1,7 @@
 package event;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -62,7 +63,7 @@ public class ChattingJFrame extends JFrame {
 		panel_1.add(sendBtn);
 		
 		chatTA = new JTextArea();
-		chatTA.setText("낯선상대 : ?\r\n당신 : 이게 뭐야");
+		chatTA.setText("낯선상대 : ?\r\n당신 : 이게 뭐야 \n");
 		contentPane.add(chatTA, BorderLayout.CENTER);
 		/*
 		 * 이벤트소스에 핸들러객체 등록
@@ -71,6 +72,26 @@ public class ChattingJFrame extends JFrame {
 		sendBtn.addActionListener(handler);
 		
 		
+	}//생성자
+	
+	/*******************************InnerClass**************************************/
+	
+	public class ChatSendButtonActionEventHandler implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("send button click");
+			/*
+			 * frame의 TextField와 TextArea에 접근해야함
+			 */
+			String chatStr = chatTF.getText();
+			chatTF.setText("");
+			chatTA.append(chatStr + "\n");
+			chatTF.requestFocus();
+			
+			
+			
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package event;
 
 import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.*;
 /*
@@ -47,7 +48,7 @@ public class ActionEventJFrame extends JFrame{
 		/**********이벤트 핸들러 객체 등록***********/
 		
 		northBtn.addActionListener(new NorthButtonActionEventHandler(this));
-		
+		southBtn.addActionListener(new SouthButtonActionEventHandler());
 		
 		contentPane.add(northBtn,BorderLayout.NORTH);
 		contentPane.add(southBtn,BorderLayout.SOUTH);
@@ -58,6 +59,20 @@ public class ActionEventJFrame extends JFrame{
 		
 		this.setSize(300,400);
 		this.setVisible(true);
+	}
+	/**************************member inner class****************************/
+	public class SouthButtonActionEventHandler implements ActionListener{
+		int count;
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			count++;
+			setTitle("south button click["+ count + "]");
+			int r = (int)(Math.random()*256);
+			int g = (int)(Math.random()*256);
+			contentPane.setBackground(new Color(r,g,255));
+		}
+		
+
 		
 		
 	}
