@@ -33,7 +33,14 @@ public class ChattingJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ChattingJFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.out.println("windowClosing");
+				System.exit(0);
+			}
+		});
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 341, 540);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -55,6 +62,19 @@ public class ChattingJFrame extends JFrame {
 		contentPane.add(panel_1, BorderLayout.SOUTH);
 		
 		chatTF = new JTextField();
+		chatTF.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("TextField enter key");
+				/*
+				 * frame의 TextField와 TextArea에 접근해야함
+				 */
+				String chatStr = chatTF.getText();
+				chatTF.setText("");
+				chatTA.append(chatStr + "\n");
+				chatTF.requestFocus();
+				
+			}
+		});
 		panel_1.add(chatTF);
 		chatTF.setColumns(20);
 		
@@ -63,6 +83,7 @@ public class ChattingJFrame extends JFrame {
 		panel_1.add(sendBtn);
 		
 		chatTA = new JTextArea();
+		chatTA.setEditable(false);
 		chatTA.setText("낯선상대 : ?\r\n당신 : 이게 뭐야 \n");
 		contentPane.add(chatTA, BorderLayout.CENTER);
 		/*
