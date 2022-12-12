@@ -153,12 +153,15 @@ public class StudentService {
 	public void sortByTotAsc() {
 		for(int i = 0; i < students.length; i++) {
 			for(int j = 0; j < students.length-1; j++) {
-				if(students[j].getTot() < students[j+1].getTot()) {
+				if(students[j].getTot() > students[j+1].getTot()) {
 					Student temp = students[j];
 					students[j] = students[j+1];
 					students[j+1] = temp;
 				}
 			}
+		}
+		for (Student student : students) {
+			student.print();
 		}
 	}
 	/*
@@ -173,6 +176,9 @@ public class StudentService {
 					students[j+1] = temp;
 				}
 			}
+		}
+		for (Student student : students) {
+			student.print();
 		}
 	}
 	

@@ -129,6 +129,7 @@ public class StudentServiceArrayFrameMain  extends JFrame{
 		sortByNameStudentsAscBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("8. 학생이름순으로 오름차순정렬");
+				studentService.sortByNameAsc();
 			}
 		});
 		sortByNameStudentsAscBtn.setBounds(42, 424, 700, 41);
