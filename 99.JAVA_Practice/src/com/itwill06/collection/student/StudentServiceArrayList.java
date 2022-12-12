@@ -37,11 +37,9 @@ public class StudentServiceArrayList {
 			tempStudent.calculateGrade();
 		}
 		
-		/*for (Student student : studentList) {
-			student.calculateTotal();
-			student.calculateAvg();
-			student.calculateGrade();
-		}*/
+		for (Student student : studentList) {
+				student.print();
+		}
 		
 
 	}
@@ -51,9 +49,9 @@ public class StudentServiceArrayList {
 	 */
 	public void calculateRank() {
 		for(int i = 0; i < studentList.size(); i++) {
-			for(int j = 0; j < studentList.size()-1; j++){
-				if(studentList.get(j).getTot() < studentList.get(j+1).getTot()) {
-					studentList.get(j).setRank(studentList.get(j).getRank()+1);
+			for(int j = 0; j < studentList.size(); j++){
+				if(studentList.get(i).getTot() < studentList.get(j).getTot()) {
+					studentList.get(i).setRank(studentList.get(i).getRank()+1);
 				}
 			}
 		}
@@ -74,7 +72,13 @@ public class StudentServiceArrayList {
 	 */
 	public Student findByStudent(int no) {
 		Student findStudent = null;
-
+		for(int i = 0; i < studentList.size(); i++) {
+			if(studentList.get(i).getNo() == no) {
+				findStudent = studentList.get(i);
+				break;
+			}
+		}
+		
 		return findStudent;
 	}
 
@@ -83,7 +87,11 @@ public class StudentServiceArrayList {
 	 */
 	public ArrayList<Student> findByGrade(char grade) {
 		ArrayList<Student> findStudents = new ArrayList<Student>();
-
+		for(int i = 0; i < studentList.size(); i++) {
+			if(studentList.get(i).getGrade() == grade) {
+				findStudents.add(studentList.get(i));
+			}
+		}
 		return findStudents;
 	}
 
@@ -92,7 +100,11 @@ public class StudentServiceArrayList {
 	 */
 	public ArrayList<Student> findByName(String name) {
 		ArrayList<Student> findStudents = new ArrayList<Student>();
-
+		for(int i = 0; i < studentList.size(); i++) {
+			if(studentList.get(i).getName().equals(name)) {
+				findStudents.add(studentList.get(i));
+			}
+		}
 		return findStudents;
 	}
 
