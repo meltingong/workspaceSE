@@ -36,13 +36,13 @@ public class StudentServiceArrayList {
 			tempStudent.calculateAvg();
 			tempStudent.calculateGrade();
 		}
-		/*
+		
 		for (Student student : studentList) {
 			student.calculateTotal();
 			student.calculateAvg();
 			student.calculateGrade();
 		}
-		*/
+		
 
 	}
 
@@ -50,7 +50,16 @@ public class StudentServiceArrayList {
 	 * 2. 전체학생 총점으로 석차계산
 	 */
 	public void calculateRank() {
-
+		for(int i = 0; i < studentList.size(); i++) {
+			for(int j = 0; j < studentList.size()-1; j++){
+				if(studentList.get(j).getTot() < studentList.get(j+1).getTot()) {
+					studentList.get(j).setRank(studentList.get(j).getRank()+1);
+				}
+			}
+		}
+		for (Student student : studentList) {
+			student.print();
+		}
 	}
 
 	/*

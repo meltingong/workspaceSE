@@ -5,10 +5,11 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import com.itwill06.collection.student.*;
+
 public class StudentServiceArrayListFrameMain  extends JFrame{
 	
-	
-	
+	private StudentServiceArrayList studentList;
 	private JTextField noTF;
 	private JTextField gradeTF;
 	private JTextField nameTF;
@@ -32,7 +33,7 @@ public class StudentServiceArrayListFrameMain  extends JFrame{
 		claculateTotAvgGradeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("1. 전체학생총점,평균,평점계산");
-				
+				studentList.calculate();
 			}
 		});
 		claculateTotAvgGradeBtn.setBounds(42, 34, 700, 40);
@@ -42,7 +43,7 @@ public class StudentServiceArrayListFrameMain  extends JFrame{
 		calculateRankBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("2. 전체학생 총점으로 석차계산");
-				
+				studentList.calculateRank();
 			}
 		});
 		calculateRankBtn.setBounds(42, 89, 700, 46);
