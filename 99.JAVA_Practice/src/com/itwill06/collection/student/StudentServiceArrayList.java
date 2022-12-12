@@ -37,11 +37,11 @@ public class StudentServiceArrayList {
 			tempStudent.calculateGrade();
 		}
 		
-		for (Student student : studentList) {
+		/*for (Student student : studentList) {
 			student.calculateTotal();
 			student.calculateAvg();
 			student.calculateGrade();
-		}
+		}*/
 		
 
 	}
