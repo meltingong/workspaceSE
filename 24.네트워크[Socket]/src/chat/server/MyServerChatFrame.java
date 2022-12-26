@@ -14,7 +14,10 @@ import chat.server.ChatServerFrame.*;
 public class MyServerChatFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JTextArea displayTA;
 	private JTextField noticeTF;
+	private JButton noticeBtn;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -46,10 +49,10 @@ public class MyServerChatFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		JScrollPane displayTA = new JScrollPane();
+		displayTA = new JTextArea();
 		scrollPane.setViewportView(displayTA);
 		
 		JPanel panel = new JPanel();
@@ -59,18 +62,25 @@ public class MyServerChatFrame extends JFrame {
 		panel.add(noticeTF);
 		noticeTF.setColumns(30);
 		
-		JButton noticeBtn = new JButton("공지");
+		noticeBtn = new JButton("공지");
 		panel.add(noticeBtn);
 	}
+	
+	private void setLog(String log) {
+		displayTA.append(log + "\n");
+		int maxSize = scrollPane.getVerticalScrollBar().getMaximum();
+		scrollPane.getVerticalScrollBar().setValue(maxSize);
+	}
+	
 	/*******************************************/
 	
-	public class ServerCliendThread extends Thread{
+	public class ServerClientThread extends Thread{
 		private String id;
 		private Socket socket;
 		private BufferedReader in;
 		private PrintWriter out;
 		
-		public ServerCliendThread(Socket socket) throws Exception {
+		public ServerClientThread(Socket socket) throws Exception {
 			this.socket = socket;
 			this.id = socket.getInetAddress().getHostAddress() + "[" + socket.getPort() + "]";
 			this.in = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
@@ -98,13 +108,6 @@ public class MyServerChatFrame extends JFrame {
 			}
 			
 		}
-
-
-
-
-
-	
-		
 		
 	}
 	
@@ -117,8 +120,19 @@ public class MyServerChatFrame extends JFrame {
 		/*
 		 * 클라이언트 객체 추가
 		 */
-		
-		
+		public void addClient(ServerClientThread newClient) {
+			clientList.add(newClient);
+			setLog(newClient.getUserId() + "님 입장");
+			setLog("현재 접속자 수 : " + clientList.size() + "명");
+		}
+		/*
+		 * 클라이언트 객체 삭제
+		 */
+		public void removeClient(ServerClientThread removeClient) {
+			clientList.remove(removeClient);
+			setLog(removeClient.getUserId() + "님 퇴장");
+			setLog("현재 접속자 수 : " + clientList.size() + "명");
+		}
 		
 	}
 	
