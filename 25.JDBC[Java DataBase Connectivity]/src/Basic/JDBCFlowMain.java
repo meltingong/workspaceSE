@@ -5,14 +5,12 @@ import java.sql.*;
 public class JDBCFlowMain {
 
 	public static void main(String[] args) throws Exception {
+		/************************데이터베이스 접속정보*****************************/
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "scott";
 		String password = "tiger";
 		String selectSql = "select deptno,dname,loc from dept order by deptno";
-		
-		
-		
 		
 		/*
 		 * 1. Driver class loading
