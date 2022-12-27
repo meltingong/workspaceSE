@@ -32,13 +32,16 @@ public class MemberDao {
 
 	 */
 	
-	public int insert(String m_id, String m_password, String m_name, String m_address, int m_age, char m_married, Date m_regdate) throws Exception {
+	public int insert(Member member) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
 		String user = "jdveloper04";
 		String password = "jdveloper04";
 		
-		String insertSQL = "insert into member values('"+m_id+"','"+m_password+"','"+m_name+"','"+m_address+"','"+m_age+"','"+m_married+"',null)";
+		String insertSQL = "insert into member values('"+member.getM_id()+"','"+member.getM_password()+"',"
+														+ "'"+member.getM_name()+"','"+member.getM_address()+"',"
+														+ "'"+member.getM_age()+"','"+member.getM_married()+"',"
+																+ "sysdate"+")";
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url,user,password);
@@ -52,14 +55,14 @@ public class MemberDao {
 		return rowCount;
 	}
 
-	public int update(String m_id ,String m_password, String m_name, String m_address, int m_age, char m_married) throws Exception {
+	public int update(Member member) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
 		String user = "jdveloper04";
 		String password = "jdveloper04";
 		
-		String updateSQL = "update member set m_password = '"+m_password+"', m_name = '"+m_name+"',m_address = '"+m_address+"',"
-							+ "m_age = '"+m_age+"',m_married = '"+m_married+"' where m_id = " + m_id;
+		String updateSQL = "update member set m_password = '"+member.getM_password()+"', m_name = '"+member.getM_name()+"',m_address = '"+member.getM_address()+"',"
+							+ "m_age = '"+member.getM_age()+"',m_married = '"+member.getM_married()+"' where m_id = " + member.getM_id();
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url,user,password);
