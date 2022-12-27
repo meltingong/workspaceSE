@@ -28,7 +28,7 @@ public class JDBCFlowMain {
 		System.out.println("2.Connection 객체생성 : " + con);
 		
 		/*
-		 * 3. Satement객체생성
+		 * 3. Statement객체생성
 		 * 		- SQL전송 객체 생성
 		 */
 		Statement stmt = con.createStatement();
