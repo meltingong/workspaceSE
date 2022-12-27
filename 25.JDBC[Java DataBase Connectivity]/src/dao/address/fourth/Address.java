@@ -58,7 +58,7 @@ public class Address {
 	
 	@Override
 	public String toString() {
-		return "Address [no=" + no + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
+		return "Address [no=" + no + ", name=" + name + ", phone=" + phone + ", address=" + address + "]\n";
 	}
 	
 	
