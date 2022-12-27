@@ -1,4 +1,4 @@
-package dao.address.second;
+package dao.address.third;
 
 import java.sql.*;
 
@@ -9,18 +9,21 @@ import java.sql.*;
  * 		- MemberService객체 의 요청(메쏘드호출)을 받아서 Data Access(File, DB)에 관련된 단위기능(CRUD)을
 	   	  수행하는 객체
  */
-public class AddressDao2 {
-	public AddressDao2() {
+public class AddressDao3 {
+	public AddressDao3() {
 	
 	}
 	
-	public void insert(String name , String phone, String address) throws Exception {
+	public void insert(Address newAddress) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "scott";
 		String password = "tiger";
 		
-		String insertSQL = "insert into address values(address_no_seq.nextval,'"+name+"','"+phone+"','"+address+"')";
+		String insertSQL = "insert into address values(address_no_seq.nextval,"
+									+ "'"+newAddress.getName()+"',"
+									+ "'"+newAddress.getPhone()+"',"
+									+ "'"+newAddress.getAddress()+"')";
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url,user,password);
@@ -34,13 +37,17 @@ public class AddressDao2 {
 	}
 	
 	
-	public void update(int no, String name, String phone, String address) throws Exception{
+	public void update(Address updateAddress) throws Exception{
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "scott";
 		String password = "tiger";
 		
-		String updateSQL = "update address set name='"+name+"',phone='"+phone+"',address='"+address+"' where no = "+ no;
+		String updateSQL = "update address set name='"
+							+updateAddress.getName()
+							+"',phone='"+updateAddress.getPhone()
+							+"',address='"+updateAddress.getAddress()
+							+"' where no = "+ updateAddress.getNo();
 		
 		Class.forName(driverClass); //오라클 드라이버만 로딩 안해도 됨
 		Connection con = DriverManager.getConnection(url,user,password);
