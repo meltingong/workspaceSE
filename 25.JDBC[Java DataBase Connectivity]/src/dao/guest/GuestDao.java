@@ -118,19 +118,40 @@ public class GuestDao {
 	GUEST_CONTENT           VARCHAR2(4000) 
 	*/
 	
-	public String findByGuest(int guest_no) {
+	public Guest findByGuest(int no) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
 		String user = "jdeveloper04";
 		String password = "jdeveloper04";
 		
-		String selectSQL = "select ?,?,?,?,?,?,? from guest where guest_no = ? ";
+		String selectSQL = "select guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content from guest where guest_no = ? ";
 		
+		Guest findGuest = null;
 		
+		Class.forName(driverClass);
+		Connection con = DriverManager.getConnection(url,user,password);
+		PreparedStatement pstmt = con.prepareStatement(selectSQL);
+		ResultSet rs = pstmt.executeQuery();
 		
-		return null;
+		pstmt.setInt(1, no);
+
+		if(rs.next()) {
+			
+			int guest_no = rs.getInt("guest_no");
+			String guest_name = rs.getString("guest_name");
+			Date guest_date = rs.getDate(0);
+			String guest_email = rs.getString("guest_email");
+			String guest_homepage = rs.getString("guest_homepage");
+			String guest_title = rs.getString("guest_title");
+			String guest_content = rs.getString("guest_content");
+
+			findGuest = new Guest(guest_no,guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content);
+
+		}
+		return findGuest;
 	}
 	public String findByAllGuest() {
+		
 		return null;
 	}
 	
