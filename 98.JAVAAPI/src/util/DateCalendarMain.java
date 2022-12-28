@@ -1,0 +1,120 @@
+package util;
+
+import java.text.*;
+import java.util.*;
+
+import javax.swing.text.*;
+
+public class DateCalendarMain {
+
+	public static void main(String[] args) throws Exception {
+		
+		/*
+		 * System.currentTimeMillis();
+		 */
+		
+		long currentTime = System.currentTimeMillis();
+		System.out.println("System.currentTimeMillis() --> " + currentTime);
+		long startTime = System.currentTimeMillis();
+		Thread.sleep(12);
+		long endTime = System.currentTimeMillis();
+		long duration = endTime - startTime;
+		System.out.println("duration : " + duration);
+		
+		/*
+		 * java.util.Date
+		 */
+		
+		Date now = new Date();
+		String nowString = now.toString();
+		System.out.println(nowString);
+		
+		long currentTimeMillis1 = now.getTime();
+		System.out.println("Date.getTime() --> " + currentTimeMillis1);
+		
+		System.out.println("-------------SimpleDateFormat[Date --> String]---------------");
+		/*
+		 * SimpleDateFormat : Date객체의 시간을 문자열로 변경해 주는 클래스
+		 */
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy 년 MM 월 dd 일");
+		String formatStr1 = sdf1.format(now);
+		System.out.println(formatStr1);
+		
+		sdf1.applyPattern("yyyy/MM/dd HH:mm:ss.SSS");
+		String formatStr2 = sdf1.format(now);
+		System.out.println(formatStr2);
+		
+		sdf1.applyPattern("yyyy");
+		String yearStr = sdf1.format(now);
+		System.out.println("String --> " + yearStr);
+		int year = Integer.parseInt(yearStr);
+		System.out.println("int --> " + year);
+		
+		System.out.println("-------------SimpleDateFormat[String --> Date]---------------");
+		SimpleDateFormat sdf2 = new SimpleDateFormat();
+		sdf2.applyPattern("yyyy-MM-dd");
+		Date myBirthDay = sdf2.parse("2000-06-03");
+		System.out.println(myBirthDay.toString());
+		System.out.println(myBirthDay.toLocaleString());
+		System.out.println(myBirthDay.getTime());
+		
+		sdf2.applyPattern("yyyy/MM/dd HH:mm:ss");
+		Date yourBirthDay = sdf2.parse("1998/05/16 19:55:45");
+		System.out.println(yourBirthDay.toString());
+		System.out.println(yourBirthDay.toLocaleString());
+		System.out.println(yourBirthDay.getTime());
+		
+		/******************************java.util.Calendar************************************/
+		
+		Calendar cal1 = Calendar.getInstance();
+		System.out.println(cal1);
+		System.out.println(cal1.getCalendarType());
+		
+		long currentTimeMillis3 = cal1.getTimeInMillis();
+		System.out.println("cal1.getTimeInMillis() --> " + currentTimeMillis3);
+		int y = cal1.get(Calendar.YEAR);
+		int month = cal1.get(Calendar.MONTH)+1;
+		int day = cal1.get(Calendar.DAY_OF_MONTH);
+		int hour = cal1.get(Calendar.HOUR);
+		int min = cal1.get(Calendar.MINUTE);
+		int sec = cal1.get(Calendar.SECOND);
+		int msec = cal1.get(Calendar.MILLISECOND);
+		System.out.println(y + "/" + month + "/" + day + " " + hour + ":" + min + ":" + sec + "."+ msec );
+		
+		System.out.println("----------- Calendar --> Date ------------");
+		Calendar cal2 = Calendar.getInstance();
+		cal2.set(2021, Calendar.JANUARY, 10, 13, 59, 59);
+		System.out.println("Calendar cal2 --> " + cal2);
+		Date date2 = cal2.getTime();
+		System.out.println("Date date2 --> " + date2.toLocaleString());
+		
+		System.out.println("----------- Date --> Calendar ------------");
+		Date date3 = new Date();
+		Calendar cal3 = Calendar.getInstance();
+		cal3.setTimeInMillis(date3.getTime());
+		System.out.println("Date date3 --> " + date3.toLocaleString());
+		System.out.println("Calendar cal3 --> " + cal3);
+		
+		System.out.println("----------Date 객체 메소드-----------");
+		Date date4 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-10");
+		Date date5 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-10");
+		Date date6 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-15");
+		
+		System.out.println("equals : " + date4.equals(date5));
+		System.out.println("equals : " + date4.equals(date6));
+		System.out.println("compareTo : " + date4.compareTo(date5));
+		System.out.println("compareTo : " + date4.compareTo(date6));
+		System.out.println("compareTo : " + date6.compareTo(date4));
+		long gapMilliSec = date6.getTime() - date4.getTime();
+		System.out.println("gapMilliSec : " + gapMilliSec);
+		System.out.println("min : " + gapMilliSec/1000/60);
+		System.out.println("hour : " + gapMilliSec/1000/60/60);
+		System.out.println("day : " + gapMilliSec/1000/60/60/24);
+		
+		System.out.println(">>>>>>> java.util.Date --> java.sql.Date <<<<<<<<<");
+		System.out.println(">>>>>>> java.sql.Date --> java.util.Date <<<<<<<<<");
+		
+	}
+
+}
