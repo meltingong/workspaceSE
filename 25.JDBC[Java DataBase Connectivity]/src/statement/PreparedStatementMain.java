@@ -1,6 +1,7 @@
 package statement;
 
 import java.sql.*;
+import java.text.*;
 import java.util.*;
 import java.util.Date;
 
@@ -88,6 +89,7 @@ public class PreparedStatementMain {
 		double sal = 3000.34;
 		int comm = 30;
 		int deptno = 40;
+		
 		pstmt2.setInt(1, empno);
 		pstmt2.setString(2, ename);
 		pstmt2.setString(3, job);
@@ -96,6 +98,98 @@ public class PreparedStatementMain {
 		pstmt2.setDouble(6, sal);
 		pstmt2.setInt(7, comm);
 		pstmt2.setInt(8, deptno);
+		
+		rowCount = pstmt2.executeUpdate();
+		System.out.println("PreparedStatement로 9001번 "+ rowCount + "행이 insert");
+	
+		/************************9002 insert******************************/
+		empno = 9002;
+		ename = "HONG";
+		job = "CLERK";
+		mgr = 7369;
+		hiredate = new SimpleDateFormat("yyyy/MM/dd").parse("2001/05/12");
+		
+		sal = 5000.56;
+		comm = 0;
+		deptno = 40;
+		
+		pstmt2.setInt(1, empno);
+		pstmt2.setString(2, ename);
+		pstmt2.setString(3, job);
+		pstmt2.setInt(4, mgr);
+		pstmt2.setDate(5, new java.sql.Date(hiredate.getTime()));
+		pstmt2.setDouble(6, sal);
+		pstmt2.setInt(7, comm);
+		pstmt2.setInt(8, deptno);
+		
+		rowCount = pstmt2.executeUpdate();
+		System.out.println("PreparedStatement로 9002번 "+ rowCount + "행이 insert");
+		pstmt2.close();
+		
+		/************************9003 insert******************************/
+		empno = 9003;
+		ename = "이동욱";
+		job = "SALESMAN";
+		mgr = 7369;
+		hiredate = new SimpleDateFormat("yyyy/MM/dd").parse("2002/06/13");
+		sal = 5682.99;
+		comm = 50;
+		deptno = 40;
+		
+		String insertSQL3 = "insert into emp values(?,?,?,?,to_date(?,?),?,?,?)";
+		
+		PreparedStatement pstmt3 = con.prepareStatement(insertSQL3);
+		
+		pstmt3.setInt(1, empno);
+		pstmt3.setString(2, ename);
+		pstmt3.setString(3, job);
+		pstmt3.setInt(4, mgr);
+		pstmt3.setString(5,"2000/12/31");
+		pstmt3.setString(6,"YYYY/MM/DD");
+		pstmt3.setDouble(7, sal);
+		pstmt3.setInt(8, comm);
+		pstmt3.setInt(9, deptno);
+		
+		rowCount = pstmt3.executeUpdate();
+		System.out.println("PreparedStatement로 9003번 "+ rowCount + "행이 insert");
+		
+		/************************9004 insert******************************/
+		empno = 9004;
+		//	ename = null;
+		//	job = null;
+		//	mgr = 7369;
+		//	hiredate = null;
+		//	sal = 5000.56;
+		//	comm = 0;
+		//	deptno = 40;
+		
+		String insertSQL4 = "insert into emp values(?,?,?,?,?,?,?,?)";
+		
+		PreparedStatement pstmt4 = con.prepareStatement(insertSQL4);
+		pstmt4.setInt(1, empno);
+		pstmt4.setNull(2, Types.VARCHAR);
+		pstmt4.setNull(3,Types.VARCHAR);
+		pstmt4.setNull(4, Types.INTEGER);
+		pstmt4.setNull(5, Types.DATE);
+		pstmt4.setNull(6, Types.DOUBLE);
+		pstmt4.setNull(7, Types.INTEGER);
+		pstmt4.setNull(8, Types.INTEGER);
+		
+		rowCount = pstmt4.executeUpdate();
+		System.out.println("PreparedStatement로 9004번 "+ rowCount + "행이 insert");
+		
+		pstmt4.close();
+		con.close();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
