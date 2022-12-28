@@ -35,13 +35,13 @@ public class MemberDao {
 	public int insert(Member member) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdveloper04";
-		String password = "jdveloper04";
+		String user = "jdeveloper04";
+		String password = "jdeveloper04";
 		
 		String insertSQL = "insert into member values('"+member.getM_id()+"','"+member.getM_password()+"',"
 														+ "'"+member.getM_name()+"','"+member.getM_address()+"',"
 														+ "'"+member.getM_age()+"','"+member.getM_married()+"',"
-																+ "sysdate"+")";
+																+"sysdate" +")";
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url,user,password);
@@ -58,8 +58,8 @@ public class MemberDao {
 	public int update(Member member) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdveloper04";
-		String password = "jdveloper04";
+		String user = "jdeveloper04";
+		String password = "jdeveloper04";
 		
 		String updateSQL = "update member set m_password = '"+member.getM_password()+"', m_name = '"+member.getM_name()+"',m_address = '"+member.getM_address()+"',"
 							+ "m_age = '"+member.getM_age()+"',m_married = '"+member.getM_married()+"' where m_id = " + member.getM_id();
@@ -79,8 +79,8 @@ public class MemberDao {
 	public int delete(String m_id) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdveloper04";
-		String password = "jdveloper04";
+		String user = "jdeveloper04";
+		String password = "jdeveloper04";
 		
 		String deleteSQL = "delete member where m_id = " + m_id;
 		
@@ -99,10 +99,10 @@ public class MemberDao {
 	public Member findByPrimaryKey(String m_id) throws Exception {
 		String driverClass = "oracle.jdbc.OracleDriver";
 		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdveloper04";
-		String password = "jdveloper04";
+		String user = "jdeveloper04";
+		String password = "jdeveloper04";
 		
-		String selectSQL = "select m_id,m_password, m_name,m_address, m_age, m_married, m_regdate where m_id = " + m_id;
+		String selectSQL = "select m_id,m_password, m_name,m_address, m_age, m_married, m_regdate from member where m_id = " + m_id;
 		
 		Member findMember = null;
 		
@@ -134,11 +134,11 @@ public class MemberDao {
 	public List<Member> findAll() throws Exception {
 		
 		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "scott";
-		String password = "tiger";
+		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
+		String user = "jdeveloper04";
+		String password = "jdeveloper04";
 		
-		String selectSQL = "select m_id,m_password, m_name,m_address, m_age, m_married, m_regdate where m_id ";
+		String selectSQL = "select m_id,m_password, m_name,m_address, m_age, m_married, m_regdate from member ";
 		
 		List<Member> memberList = new ArrayList<Member>();
 		
