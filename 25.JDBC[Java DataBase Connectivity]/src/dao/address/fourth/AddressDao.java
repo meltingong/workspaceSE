@@ -10,8 +10,8 @@ import java.util.*;
  * 		- MemberService객체 의 요청(메쏘드호출)을 받아서 Data Access(File, DB)에 관련된 단위기능(CRUD)을
 	   	  수행하는 객체
  */
-public class AddressDao4 {
-	public AddressDao4() {
+public class AddressDao {
+	public AddressDao() {
 	
 	}
 	

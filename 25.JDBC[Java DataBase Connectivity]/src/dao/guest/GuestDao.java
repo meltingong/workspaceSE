@@ -52,7 +52,7 @@ public class GuestDao {
 		String user = "jdeveloper04";
 		String password = "jdeveloper04";
 		
-		String updateSQL = "update guest set ?,?,?,?,?,? where guest_no = ? ";
+		String updateSQL = "update guest set guest_name = ?, guest_date = ?, guest_email = ?, guest_homepage = ?, guest_title = ?, guest_content = ? where guest_no = ? ";
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url,user,password);
@@ -124,22 +124,20 @@ public class GuestDao {
 		String user = "jdeveloper04";
 		String password = "jdeveloper04";
 		
-		String selectSQL = "select guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content from guest where guest_no = ? ";
+		String selectSQL = "select guest_no,guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content from guest where guest_no = " +no;
 		
 		Guest findGuest = null;
 		
 		Class.forName(driverClass);
 		Connection con = DriverManager.getConnection(url,user,password);
-		PreparedStatement pstmt = con.prepareStatement(selectSQL);
-		ResultSet rs = pstmt.executeQuery();
-		
-		pstmt.setInt(1, no);
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(selectSQL);
 
 		if(rs.next()) {
 			
 			int guest_no = rs.getInt("guest_no");
 			String guest_name = rs.getString("guest_name");
-			Date guest_date = rs.getDate(0);
+			Date guest_date = rs.getDate("guest_date");
 			String guest_email = rs.getString("guest_email");
 			String guest_homepage = rs.getString("guest_homepage");
 			String guest_title = rs.getString("guest_title");
@@ -148,11 +146,46 @@ public class GuestDao {
 			findGuest = new Guest(guest_no,guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content);
 
 		}
+		rs.close();
+		stmt.close();
+		con.close();
 		return findGuest;
 	}
-	public String findByAllGuest() {
+	public List<Guest> findByAllGuest() throws Exception {
+		String driverClass = "oracle.jdbc.OracleDriver";
+		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
+		String user = "jdeveloper04";
+		String password = "jdeveloper04";
 		
-		return null;
+		String selectSQL = "select guest_no,guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content from guest";
+		
+		Class.forName(driverClass);
+		Connection con = DriverManager.getConnection(url,user,password);
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(selectSQL);
+		
+		List<Guest> guestList = new ArrayList<Guest>();
+		
+		if(rs.next()) {
+			do {
+				int guest_no = rs.getInt("guest_no");
+				String guest_name = rs.getString("guest_name");
+				Date guest_date = rs.getDate("guest_date");
+				String guest_email = rs.getString("guest_email");
+				String guest_homepage = rs.getString("guest_homepage");
+				String guest_title = rs.getString("guest_title");
+				String guest_content = rs.getString("guest_content");
+
+				guestList.add(new Guest(guest_no,guest_name,guest_date,guest_email,guest_homepage,guest_title,guest_content));
+				
+			}while(rs.next());
+			
+			rs.close();
+			stmt.close();
+			con.close();
+		}
+	
+		return guestList;
 	}
 	
 }
