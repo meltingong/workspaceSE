@@ -78,6 +78,9 @@ public class ResultSetMain {
 		
 		
 		
+		rs.close();
+		
+		
 		
 		dataSource.close(con);
 	}
