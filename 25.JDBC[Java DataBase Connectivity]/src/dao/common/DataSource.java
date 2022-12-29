@@ -1,4 +1,4 @@
-package dao.address;
+package dao.common;
 
 import java.sql.*;
 
@@ -10,9 +10,9 @@ import java.sql.*;
 public class DataSource {
 	
 	private String driverClass = "oracle.jdbc.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String user = "scott";
-	private String password = "tiger";
+	private String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
+	private String user = "jdeveloper04";
+	private String password = "jdeveloper04";
 	
 	/*
 	 * Connection 객체를 생성해서 반환하는 메소드 

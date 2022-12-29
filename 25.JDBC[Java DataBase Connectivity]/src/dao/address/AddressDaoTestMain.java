@@ -11,7 +11,7 @@ public class AddressDaoTestMain {
 		AddressDao addressDao = new AddressDao();
 		System.out.println("1.insert");
 		Address newAddress = 
-				new Address(0,"문상훈", "111-3333", "대구시민"); 
+				new Address(0,"짱구", "111-3333", "대구시민"); 
 		int rowCount = addressDao.insert(newAddress);
 		System.out.println(" >> insert row count : " + rowCount);
 		System.out.println("2.update");
