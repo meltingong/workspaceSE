@@ -6,7 +6,7 @@ import java.sql.*;
 	데이타베이스 설정정보를 사용해서 
 	Connection객체를 생성하고, 해지하는 역할을 하는 클래스
 	(Dao객체들이 사용하는 객체) 
- */
+*/
 public class DataSource {
 	
 	private String driverClass = "oracle.jdbc.OracleDriver";
