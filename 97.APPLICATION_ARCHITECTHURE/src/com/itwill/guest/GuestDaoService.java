@@ -13,16 +13,16 @@ public class GuestDaoService {
 		return guestDao.insert(guest);
 	}
 	
-	public Guest guestDaoDetail(int no) throws Exception {
-		return guestDao.findByGuest(no);
+	public Guest guestDaoDetail(int guest_no) throws Exception {
+		return guestDao.findByGuest(guest_no);
 	}
 	
 	public int guestDaoUpdate(Guest guest) throws Exception {
 		return guestDao.update(guest);
 	}
 	
-	public int guestDaoDelete(int no) throws Exception {
-		return guestDao.delete(no);
+	public int guestDaoDelete(int guest_no) throws Exception {
+		return guestDao.delete(guest_no);
 	}
 	
 	public List<Guest> guestDaoAll() throws Exception{

@@ -17,14 +17,13 @@ public class MemberDaoServiceTestMain {
 		System.out.println(">> " + findMember);
 		
 		System.out.println("3. 멤버 수정");
-		findMember.setM_id("zzzz");
 		findMember.setM_password("zzzz");
 		findMember.setM_name("원장님");
 		findMember.setM_age(54);
 		System.out.println(">> " + memberDaoService.memberDaoUpdate(findMember));
 		
 		System.out.println("4. 멤버 삭제");
-		System.out.println(">> " + memberDaoService.memberDaoDelete("eeee"));
+		System.out.println(">> " + memberDaoService.memberDaoDelete("qqqq"));
 		
 		System.out.println("5. 멤버 리스트");
 		System.out.println(">> " + memberDaoService.memberDaoAll());

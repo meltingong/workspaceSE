@@ -10,7 +10,7 @@ public class MemberDaoTestMain {
 		MemberDao memberDao=new MemberDao();
 		int rowCount = memberDao.delete("aaaa");
 		System.out.println("0.delete   --> " + rowCount);
-		rowCount = memberDao.insert(new Member("eeee","eeee","고수","서울시 성북구",45,'F',null));
+		rowCount = memberDao.insert(new Member("qqqq","qqqq","고수","서울시 성북구",45,'F',null));
 		System.out.println("1.insert   --> " + rowCount);
 		rowCount = memberDao.update(new Member("dddd","dddd","유재석","서울시 압구정동",52,'T',null));
 		System.out.println("2.update   --> " + rowCount);

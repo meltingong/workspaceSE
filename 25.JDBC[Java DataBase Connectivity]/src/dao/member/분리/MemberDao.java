@@ -57,13 +57,13 @@ public class MemberDao {
 
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_UPDATE);
-		pstmt.setString(1, member.getM_id());
-		pstmt.setString(2, member.getM_password());
-		pstmt.setString(3, member.getM_name());
-		pstmt.setString(4, member.getM_address());
-		pstmt.setInt(5, member.getM_age());
+		pstmt.setString(1, member.getM_password());
+		pstmt.setString(2, member.getM_name());
+		pstmt.setString(3, member.getM_address());
+		pstmt.setInt(4, member.getM_age());
 		String m_married = String.valueOf(member.getM_married());
-		pstmt.setString(6, m_married);
+		pstmt.setString(5, m_married);
+		pstmt.setString(6, member.getM_id());
 		
 		int rowCount = pstmt.executeUpdate();
 		System.out.println(">>update row count : " + rowCount + "행 update");
@@ -77,7 +77,7 @@ public class MemberDao {
 
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_DELETE);
-		pstmt.setString(1, "m_id");
+		pstmt.setString(1, m_id);
 		int rowCount = pstmt.executeUpdate();
 		System.out.println(">>delete row count : " + rowCount + "행 delete");
 		pstmt.close();
@@ -92,7 +92,7 @@ public class MemberDao {
 		
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_SELECT_BY_ID);
-		pstmt.setString(1, "m_id");
+		pstmt.setString(1, m_id);
 		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {

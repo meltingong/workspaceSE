@@ -29,4 +29,6 @@ public class MemberDaoService {
 		return memberDao.findAll();
 	}
 	
+
+	
 }

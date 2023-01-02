@@ -128,8 +128,7 @@ public class GuestDao {
 		
 		List<Guest> guestList = new ArrayList<Guest>();
 		
-		if(rs.next()) {
-			do {
+		while(rs.next()) {
 				guestList.add(new Guest(rs.getInt("guest_no"),
 										rs.getString("guest_name"),
 										rs.getDate("guest_date"),
@@ -138,23 +137,36 @@ public class GuestDao {
 										rs.getString("guest_title"),
 										rs.getString("guest_content")));
 
-			}while(rs.next());
+			}
 			
 			rs.close();
 			pstmt.close();
 			dataSource.close(con);
-		}
-	
-		return guestList;
+			
+			return guestList;
 	}
 	
 	public List<Guest> findByGuestName(String guest_name) throws Exception{
 		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(GuestDaoSQL.GUEST_SECET_BY_ALL);
+		PreparedStatement pstmt = con.prepareStatement(GuestDaoSQL.GUEST_SELECT_BY_NAME);
+		pstmt.setString(1, guest_name);
 		ResultSet rs = pstmt.executeQuery();
 		
 		List<Guest> guestList = new ArrayList<Guest>();
 		
+		while(rs.next()) {
+			guestList.add(new Guest(rs.getInt("guest_no"),
+									rs.getString("guest_name"),
+									rs.getDate("guest_date"),
+									rs.getString("guest_email"),
+									rs.getString("guest_homepage"),
+									rs.getString("guest_title"),
+									rs.getString("guest_content")));
+			break;
+		}
+		rs.close();
+		pstmt.close();
+		dataSource.close(con);
 		
 		return guestList;
 	}

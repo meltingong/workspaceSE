@@ -14,7 +14,7 @@ public class GuestDaoTestMain {
 		rowCount = guestDao.insert(new Guest(0,"유리",null,"yuri@gmail.com","http://www.itwill.co.kr","되는걸까","들어가라"));
 		System.out.println("insert : " + rowCount);
 		System.out.println("2.delete");
-		rowCount = guestDao.delete(0);
+		rowCount = guestDao.delete(15);
 		System.out.println("3.update");
 		rowCount = guestDao.update(new Guest(3,"이름수정",null,"1234@naver.com","http://www.itwill.co.kr","아휴","힘들어"));
 		System.out.println("4.findByPrimarykey");
@@ -22,6 +22,9 @@ public class GuestDaoTestMain {
 		System.out.println(findGuest);
 		System.out.println("5.findAll");
 		List<Guest> guestList = guestDao.findByAllGuest();
+		System.out.println(guestList);
+		System.out.println("6.findByName");
+		guestList= guestDao.findByGuestName("이름수정");
 		System.out.println(guestList);
 	}
 

@@ -45,7 +45,6 @@ public class MemberDao {
 		pstmt.setString(6, m_married);
 		
 		int rowCount = pstmt.executeUpdate();
-		System.out.println(">>insert row count : " + rowCount + "행 insert");
 		pstmt.close();
 		dataSource.close(con);
 		
@@ -56,19 +55,17 @@ public class MemberDao {
 
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_UPDATE);
-		pstmt.setString(1, member.getM_id());
-		pstmt.setString(2, member.getM_password());
-		pstmt.setString(3, member.getM_name());
-		pstmt.setString(4, member.getM_address());
-		pstmt.setInt(5, member.getM_age());
+		pstmt.setString(1, member.getM_password());
+		pstmt.setString(2, member.getM_name());
+		pstmt.setString(3, member.getM_address());
+		pstmt.setInt(4, member.getM_age());
 		String m_married = String.valueOf(member.getM_married());
-		pstmt.setString(6, m_married);
+		pstmt.setString(5, m_married);
+		pstmt.setString(6, member.getM_id());
 		
 		int rowCount = pstmt.executeUpdate();
-		System.out.println(">>update row count : " + rowCount + "행 update");
 		pstmt.close();
 		dataSource.close(con);
-		
 		return rowCount;
 	}
 
@@ -76,9 +73,8 @@ public class MemberDao {
 
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_DELETE);
-		pstmt.setString(1, "m_id");
+		pstmt.setString(1, m_id);
 		int rowCount = pstmt.executeUpdate();
-		System.out.println(">>delete row count : " + rowCount + "행 delete");
 		pstmt.close();
 		dataSource.close(con);
 		
@@ -91,10 +87,10 @@ public class MemberDao {
 		
 		Connection con = dataSource.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_SELECT_BY_ID);
-		pstmt.setString(1, "m_id");
+		pstmt.setString(1, m_id);
 		ResultSet rs = pstmt.executeQuery();
 		
-		if(rs.next()) {
+		while(rs.next()) {
 			
 			String id = rs.getString("m_id");
 			String m_password = rs.getString("m_password");
@@ -106,6 +102,7 @@ public class MemberDao {
 			Date m_regdate = rs.getDate("m_regdate");
 			
 			findMember = new Member(id,m_password,m_name,m_address,m_age,married,m_regdate);
+			break;
 		}
 		rs.close();
 		pstmt.close();
@@ -123,8 +120,7 @@ public class MemberDao {
 		
 		ResultSet rs = pstmt.executeQuery();
 		
-		if(rs.next()) {
-			do {
+		while(rs.next()) {
 				String id = rs.getString("m_id");
 				String m_password = rs.getString("m_password");
 				String m_name = rs.getString("m_name");
@@ -137,14 +133,11 @@ public class MemberDao {
 				Member findMember = new Member(id,m_password,m_name,m_address,m_age,married,m_regdate);
 				memberList.add(findMember);
 				
-			}while(rs.next());
-			
+		}
 			rs.close();
 			pstmt.close();
 			dataSource.close(con);
 				
-		}
-		
 		return memberList;
 		
 
