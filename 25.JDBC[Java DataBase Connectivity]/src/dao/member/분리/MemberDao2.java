@@ -18,7 +18,7 @@ import dao.member.*;
 public class MemberDao2 {
 	private DataSource dataSource;
 	
-	public MemberDao2() {
+	public MemberDao2() throws Exception {
 		dataSource = new DataSource();
 	}
 

@@ -1,6 +1,8 @@
-package com.itwill.address;
+package com.itwill.address.test;
 
 import java.util.*;
+
+import com.itwill.address.*;
 
 public class AddressDaoTestMain {
 

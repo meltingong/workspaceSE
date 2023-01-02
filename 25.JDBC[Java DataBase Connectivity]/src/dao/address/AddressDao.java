@@ -20,7 +20,7 @@ public class AddressDao {
 	
 	private DataSource dataSource;
 	
-	public AddressDao() {
+	public AddressDao() throws Exception {
 		/*
 		 * dataSource멤버필드 초기화
 		 */
