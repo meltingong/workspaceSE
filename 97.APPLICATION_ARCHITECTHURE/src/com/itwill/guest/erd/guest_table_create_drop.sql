@@ -21,7 +21,12 @@ update guest set guest_name='이름수정',guest_date=sysdate,guest_email='chang
 --pk delete 
 delete from guest where guest_no=1;
 
+--pk select
 select* from guest where guest_no=2;
+--name select
+select * from guest where guest_name = '김경호';
+select * from guest where guest_name like '%||'경호'||'%';
+-- all select 
 select * from guest;
 
 

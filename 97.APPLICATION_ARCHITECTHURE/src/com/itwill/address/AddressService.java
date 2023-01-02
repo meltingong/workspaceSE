@@ -26,6 +26,16 @@ public class AddressService {
 	}
 	
 	/*
+	 * 주소록 수정하기
+	 */
+	
+	public int addressUpdate(Address updateAddress) throws Exception {
+		
+		return addressDao.update(updateAddress);
+	}
+	
+	
+	/*
 	 * 주소록 번호로 삭제하기
 	 */
 	

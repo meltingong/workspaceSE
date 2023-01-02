@@ -1,6 +1,8 @@
-package com.itwill.guest;
+package com.itwill.guest.test;
 
 import java.util.List;
+
+import com.itwill.guest.*;
 
 public class GuestDaoTestMain {
 

@@ -1,11 +1,9 @@
 package dao.member.분리;
 
-
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
-import dao.address.fourth.*;
 import dao.common.*;
 import dao.member.*;
 
@@ -15,10 +13,10 @@ import dao.member.*;
  *        CRUD(Create,Read,Update,Delete)작업을 할수있는 
  *        단위메쏘드를 가지고있는 클래스
  */
-public class MemberDao2 {
+public class MemberDao {
 	private DataSource dataSource;
 	
-	public MemberDao2() throws Exception {
+	public MemberDao() throws Exception {
 		dataSource = new DataSource();
 	}
 
@@ -38,7 +36,7 @@ public class MemberDao2 {
 	public int insert(Member member) throws Exception {
 		
 		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(MemberDao2SQL.MEMBER_INSERT);
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_INSERT);
 		pstmt.setString(1, member.getM_id());
 		pstmt.setString(2, member.getM_password());
 		pstmt.setString(3, member.getM_name());
@@ -58,7 +56,7 @@ public class MemberDao2 {
 	public int update(Member member) throws Exception {
 
 		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(MemberDao2SQL.MEMBER_UPDATE);
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_UPDATE);
 		pstmt.setString(1, member.getM_id());
 		pstmt.setString(2, member.getM_password());
 		pstmt.setString(3, member.getM_name());
@@ -78,7 +76,7 @@ public class MemberDao2 {
 	public int delete(String m_id) throws Exception {
 
 		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(MemberDao2SQL.MEMBER_DELETE);
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_DELETE);
 		pstmt.setString(1, "m_id");
 		int rowCount = pstmt.executeUpdate();
 		System.out.println(">>delete row count : " + rowCount + "행 delete");
@@ -93,7 +91,7 @@ public class MemberDao2 {
 		Member findMember = null;
 		
 		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(MemberDao2SQL.MEMBER_SELECT_BY_ID);
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_SELECT_BY_ID);
 		pstmt.setString(1, "m_id");
 		ResultSet rs = pstmt.executeQuery();
 		
@@ -122,7 +120,7 @@ public class MemberDao2 {
 		List<Member> memberList = new ArrayList<Member>();
 		
 		Connection con = dataSource.getConnection();
-		PreparedStatement pstmt = con.prepareStatement(MemberDao2SQL.MEMBER_SELECT_ALL);
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_SELECT_ALL);
 		
 		ResultSet rs = pstmt.executeQuery();
 		

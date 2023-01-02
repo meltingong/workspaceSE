@@ -1,6 +1,6 @@
-package dao.member.분리;
+package com.itwill.member;
 
-public class MemberDao2SQL {
+public class MemberDaoSQL {
 	
 	public static final  String MEMBER_INSERT = "insert into member values(?,?,?,?,?,?,sysdate)";
 	public static final  String MEMBER_UPDATE = "update member set m_password = ?, m_name = ?,m_address = ?,m_age = ?,m_married =? where m_id = ? ";

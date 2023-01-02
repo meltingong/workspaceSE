@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
+import com.itwill.common.*;
+
 /*
  * Dao(Data[DataBase] Access Object)객체
  * 		- member(회원) 데이타를 저장하고있는 테이블에
@@ -11,9 +13,10 @@ import java.util.Date;
  *        단위메쏘드를 가지고있는 클래스
  */
 public class MemberDao {
-
-	public MemberDao() {
-
+	private DataSource dataSource;
+	
+	public MemberDao() throws Exception {
+		dataSource = new DataSource();
 	}
 
 	/*
@@ -30,85 +33,69 @@ public class MemberDao {
 	 */
 	
 	public int insert(Member member) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper04";
-		String password = "jdeveloper04";
 		
-		String insertSQL = "insert into member values('"+member.getM_id()+"','"+member.getM_password()+"',"
-														+ "'"+member.getM_name()+"','"+member.getM_address()+"',"
-														+ "'"+member.getM_age()+"','"+member.getM_married()+"',"
-																+"sysdate" +")";
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_INSERT);
+		pstmt.setString(1, member.getM_id());
+		pstmt.setString(2, member.getM_password());
+		pstmt.setString(3, member.getM_name());
+		pstmt.setString(4, member.getM_address());
+		pstmt.setInt(5, member.getM_age());
+		String m_married = String.valueOf(member.getM_married());
+		pstmt.setString(6, m_married);
 		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url,user,password);
-		Statement stmt = con.createStatement();
-		
-		int rowCount = stmt.executeUpdate(insertSQL);
+		int rowCount = pstmt.executeUpdate();
 		System.out.println(">>insert row count : " + rowCount + "행 insert");
-		stmt.close();
-		con.close();
+		pstmt.close();
+		dataSource.close(con);
 		
 		return rowCount;
 	}
 
 	public int update(Member member) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper04";
-		String password = "jdeveloper04";
+
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_UPDATE);
+		pstmt.setString(1, member.getM_id());
+		pstmt.setString(2, member.getM_password());
+		pstmt.setString(3, member.getM_name());
+		pstmt.setString(4, member.getM_address());
+		pstmt.setInt(5, member.getM_age());
+		String m_married = String.valueOf(member.getM_married());
+		pstmt.setString(6, m_married);
 		
-		String updateSQL = "update member set m_password = '"+member.getM_password()+"', m_name = '"+member.getM_name()+"',m_address = '"+member.getM_address()+"',"
-							+ "m_age = '"+member.getM_age()+"',m_married = '"+member.getM_married()+"' where m_id = " + member.getM_id();
-		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url,user,password);
-		Statement stmt = con.createStatement();
-		
-		int rowCount = stmt.executeUpdate(updateSQL);
+		int rowCount = pstmt.executeUpdate();
 		System.out.println(">>update row count : " + rowCount + "행 update");
-		stmt.close();
-		con.close();
+		pstmt.close();
+		dataSource.close(con);
 		
 		return rowCount;
 	}
 
 	public int delete(String m_id) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper04";
-		String password = "jdeveloper04";
-		
-		String deleteSQL = "delete member where m_id = " + m_id;
-		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url,user,password);
-		Statement stmt = con.createStatement();
-		
-		int rowCount = stmt.executeUpdate(deleteSQL);
+
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_DELETE);
+		pstmt.setString(1, "m_id");
+		int rowCount = pstmt.executeUpdate();
 		System.out.println(">>delete row count : " + rowCount + "행 delete");
-		stmt.close();
-		con.close();
+		pstmt.close();
+		dataSource.close(con);
 		
 		return rowCount;
 	}
 
 	public Member findByPrimaryKey(String m_id) throws Exception {
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper04";
-		String password = "jdeveloper04";
-		
-		String selectSQL = "select m_id,m_password, m_name,m_address, m_age, m_married, m_regdate from member where m_id = " + m_id;
-		
+
 		Member findMember = null;
 		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url,user,password);
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(selectSQL);
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_SELECT_BY_ID);
+		pstmt.setString(1, "m_id");
+		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
+			
 			String id = rs.getString("m_id");
 			String m_password = rs.getString("m_password");
 			String m_name = rs.getString("m_name");
@@ -119,30 +106,22 @@ public class MemberDao {
 			Date m_regdate = rs.getDate("m_regdate");
 			
 			findMember = new Member(id,m_password,m_name,m_address,m_age,married,m_regdate);
-			
 		}
 		rs.close();
-		stmt.close();
-		con.close();
+		pstmt.close();
+		dataSource.close(con);
 		
 		return findMember;
 	}
 
 	public List<Member> findAll() throws Exception {
-		
-		String driverClass = "oracle.jdbc.OracleDriver";
-		String url = "jdbc:oracle:thin:@182.237.126.19:1521:xe";
-		String user = "jdeveloper04";
-		String password = "jdeveloper04";
-		
-		String selectSQL = "select m_id,m_password, m_name,m_address, m_age, m_married, m_regdate from member ";
-		
+	
 		List<Member> memberList = new ArrayList<Member>();
 		
-		Class.forName(driverClass);
-		Connection con = DriverManager.getConnection(url,user,password);
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(selectSQL);
+		Connection con = dataSource.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(MemberDaoSQL.MEMBER_SELECT_ALL);
+		
+		ResultSet rs = pstmt.executeQuery();
 		
 		if(rs.next()) {
 			do {
@@ -161,8 +140,8 @@ public class MemberDao {
 			}while(rs.next());
 			
 			rs.close();
-			stmt.close();
-			con.close();
+			pstmt.close();
+			dataSource.close(con);
 				
 		}
 		
