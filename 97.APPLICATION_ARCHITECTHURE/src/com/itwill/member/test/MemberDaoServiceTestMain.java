@@ -1,5 +1,7 @@
 package com.itwill.member.test;
 
+import javax.swing.*;
+
 import com.itwill.member.*;
 
 public class MemberDaoServiceTestMain {
@@ -8,25 +10,25 @@ public class MemberDaoServiceTestMain {
 		
 		MemberDaoService memberDaoService = new MemberDaoService();
 		
-		System.out.println("1. 멤버 추가");
-		Member newMember = new Member("qqqq", "qqqq", "채성아", "떡잎마을", 28, 'T', null);
-		System.out.println(">> " + memberDaoService.memberDaoWrite(newMember));
+		System.out.println("1. 회원가입");
+		boolean addSuccess1 =
+					memberDaoService.addMember(new Member("qqqq", "qqqq", "채성아", "떡잎마을", 28, 'T', null));
+		if(addSuccess1) {
+			System.out.println("로그인화면으로 이동");
+		}else {
+			JOptionPane.showMessageDialog(null, "중복된 아이디입니다.");
+		}
 		
-		System.out.println("2. 멤버 찾기");
-		Member findMember = memberDaoService.memberDaoDetail("dddd");
-		System.out.println(">> " + findMember);
+		boolean addSuccess2 =
+					memberDaoService.addMember(new Member("bbbb", "bbbb", "채성아", "떡잎마을", 28, 'T', null));
 		
-		System.out.println("3. 멤버 수정");
-		findMember.setM_password("zzzz");
-		findMember.setM_name("원장님");
-		findMember.setM_age(54);
-		System.out.println(">> " + memberDaoService.memberDaoUpdate(findMember));
+		if(addSuccess2) {
+			System.out.println("로그인화면으로 이동");
+		}else {
+			JOptionPane.showMessageDialog(null, "중복된 아이디입니다.");
+		}
 		
-		System.out.println("4. 멤버 삭제");
-		System.out.println(">> " + memberDaoService.memberDaoDelete("qqqq"));
 		
-		System.out.println("5. 멤버 리스트");
-		System.out.println(">> " + memberDaoService.memberDaoAll());
 		
 	}
 
