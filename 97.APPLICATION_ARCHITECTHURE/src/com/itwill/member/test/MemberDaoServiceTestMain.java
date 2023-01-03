@@ -28,6 +28,15 @@ public class MemberDaoServiceTestMain {
 			JOptionPane.showMessageDialog(null, "중복된 아이디입니다.");
 		}
 		
+		System.out.println("2. 로그인");
+		System.out.println(">> " + memberDaoService.login("bbbb", "bbbb"));
+		System.out.println(">> " + memberDaoService.login("bbbb", "1234"));
+		System.out.println(">> " + memberDaoService.login("zzzz", "bbbb"));
+		
+		System.out.println("3. 중복아이디체크");
+		System.out.println(">> " + memberDaoService.isDuplicateId("aaaa"));
+		System.out.println(">> " + memberDaoService.isDuplicateId("bbbb"));
+		
 		
 		
 	}
