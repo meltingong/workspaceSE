@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.*;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class MemberMainFrame extends JFrame {
 	/***************1. MemberService 멤버필드선언****************/
@@ -18,6 +24,7 @@ public class MemberMainFrame extends JFrame {
 	/*********로그인 한 회원********/
 	private Member loginMember = null;
 	
+	private int selected_index = 0;
 	
 	private JPanel contentPane;
 	private JTextField idTF;
@@ -41,6 +48,8 @@ public class MemberMainFrame extends JFrame {
 	private JMenuItem logoutMenuItem;
 	private JButton updateFormBtn;
 	private JButton updateBtn;
+	private JTable memberListTB;
+	private JButton memberDeleteBtn;
 
 	/**
 	 * Launch the application.
@@ -66,7 +75,7 @@ public class MemberMainFrame extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\itwill\\Desktop\\이미지\\rabbit.png"));
 		setTitle("회원관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 364, 585);
+		setBounds(100, 100, 423, 585);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -116,6 +125,14 @@ public class MemberMainFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		memberTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		memberTabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int selectedTabIndex = memberTabbedPane.getSelectedIndex();
+				if(selectedTabIndex == 4) {
+					displayMemberList();
+				}
+			}
+		});
 		contentPane.add(memberTabbedPane, BorderLayout.CENTER);
 		
 		JPanel memberMainPanel = new JPanel();
@@ -134,7 +151,7 @@ public class MemberMainFrame extends JFrame {
 			}
 		});
 		memberMainLB.setHorizontalAlignment(SwingConstants.CENTER);
-		memberMainLB.setIcon(new ImageIcon("C:\\Users\\itwill\\Desktop\\이미지\\캡처.PNG"));
+		memberMainLB.setIcon(new ImageIcon(MemberMainFrame.class.getResource("/images/접시.PNG")));
 		memberMainPanel.add(memberMainLB, BorderLayout.NORTH);
 		
 		JPanel memberLoginPanel = new JPanel();
@@ -427,12 +444,135 @@ public class MemberMainFrame extends JFrame {
 		updateBtn.setBounds(171, 371, 97, 23);
 		memberInfoPanel.add(updateBtn);
 		
+		JPanel memberAdminPanel = new JPanel();
+		memberTabbedPane.addTab("회원관리", null, memberAdminPanel, null);
+		memberAdminPanel.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 10, 368, 121);
+		memberAdminPanel.add(scrollPane);
+		
+		memberListTB = new JTable();
+		memberListTB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				selected_index = memberListTB.getSelectedRow();
+				memberDeleteBtn.setEnabled(true);
+				
+			}
+		});
+		memberListTB.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"\uC544\uC774\uB514", "\uD328\uC2A4\uC6CC\uB4DC", "\uC774\uB984", "\uC8FC\uC18C", "\uB098\uC774", "\uACB0\uD63C\uC5EC\uBD80", "\uB4F1\uB85D\uC77C"
+			}
+		));
+		scrollPane.setViewportView(memberListTB);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"유재석", "이동욱", "김철수", "채성아", "나미리"}));
+		comboBox.setBounds(195, 202, 112, 23);
+		memberAdminPanel.add(comboBox);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(12, 204, 130, 195);
+		memberAdminPanel.add(scrollPane_1);
+		
+		JList list = new JList();
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"유재석", "이동욱", "김철수", "채성아", "나미리", "유재석", "이동욱", "김철수", "채성아", "나미리", "유재석", "이동욱", "김철수", "채성아", "나미리"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		scrollPane_1.setViewportView(list);
+		
+		JButton memberListBtn = new JButton("회원리스트보기");
+		memberListBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				displayMemberList();
+				
+			}
+		});
+		memberListBtn.setBounds(41, 142, 130, 23);
+		memberAdminPanel.add(memberListBtn);
+		
+		memberDeleteBtn = new JButton("삭제");
+		memberDeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int selectedRow = memberListTB.getSelectedRow();
+					if(selected_index >= 0) {
+						String selectedId = (String)memberListTB.getValueAt(selectedRow,0);
+						memberDaoService.memberDaoDelete(selectedId);
+						displayMemberList();
+					}else {
+						memberDeleteBtn.setEnabled(false);
+					}
+				}catch(Exception e1) {
+					System.out.println(e1.getMessage());
+				}
+			}
+		});
+	
+		memberDeleteBtn.setEnabled(false);
+		memberDeleteBtn.setBounds(220, 142, 97, 23);
+		memberAdminPanel.add(memberDeleteBtn);
+		
 		/***********2. 멤버필드 객체생성************/
 		memberDaoService = new MemberDaoService();
 		logoutProcess();
 		
 		
 	} // 생성자 끝
+	
+	/************************************/
+	private void displayMemberList() {
+		/*************회원리스트 보기*************/
+		try {
+			List<Member> memberList = memberDaoService.memberList();
+			Vector columnVector = new Vector();
+			columnVector.add("아이디");
+			columnVector.add("패스워드");
+			columnVector.add("이름");
+			columnVector.add("주소");
+			columnVector.add("나이");
+			columnVector.add("결혼여부");
+			columnVector.add("등록일");
+			
+			Vector tableVector = new Vector();
+
+			for(Member member : memberList) {
+				Vector rowVector = new Vector();
+				rowVector.add(member.getM_id());
+				rowVector.add(member.getM_password());
+				rowVector.add(member.getM_name());
+				rowVector.add(member.getM_address());
+				rowVector.add(member.getM_age());
+				rowVector.add(member.getM_married());
+				rowVector.add(member.getM_regdate());
+				tableVector.add(rowVector);
+			}
+			DefaultTableModel tableModel = new DefaultTableModel(tableVector,columnVector);
+			
+			memberListTB.setModel(tableModel);
+			memberDeleteBtn.setEnabled(false);
+			
+		}catch(Exception e1) {
+			e1.printStackTrace();
+			System.out.println(e1.getMessage());
+		}
+	}
 	
 	
 	/*******************회원정보 수정 활성화, 불활성화**********************/

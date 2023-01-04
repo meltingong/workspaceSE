@@ -90,6 +90,13 @@ public class MemberDaoService {
 		return memberDao.delete(m_id);
 	}
 	
+	/* << admin >>
+	 * 회원전체리스트
+	 */
+	public List<Member> memberList() throws Exception {
+		return memberDao.findAll();
+	}
+	
 	/*
 	 * 관리자의 입장에서 필요한 기능
 	 * 회원전체검색
