@@ -39,6 +39,8 @@ public class MemberMainFrame extends JFrame {
 	private JMenuItem loginMenuItem;
 	private JMenuItem joinMenuItem;
 	private JMenuItem logoutMenuItem;
+	private JButton updateFormBtn;
+	private JButton updateBtn;
 
 	/**
 	 * Launch the application.
@@ -64,7 +66,7 @@ public class MemberMainFrame extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\itwill\\Desktop\\이미지\\rabbit.png"));
 		setTitle("회원관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 382, 585);
+		setBounds(100, 100, 364, 585);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -142,20 +144,20 @@ public class MemberMainFrame extends JFrame {
 		memberLoginPanel.setLayout(null);
 		
 		JLabel lblNewLabel_5 = new JLabel("아이디");
-		lblNewLabel_5.setBounds(32, 116, 57, 15);
+		lblNewLabel_5.setBounds(59, 116, 57, 15);
 		memberLoginPanel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("패스워드");
-		lblNewLabel_6.setBounds(32, 200, 57, 15);
+		lblNewLabel_6.setBounds(59, 200, 57, 15);
 		memberLoginPanel.add(lblNewLabel_6);
 		
 		loginIdTF = new JTextField();
-		loginIdTF.setBounds(113, 113, 116, 21);
+		loginIdTF.setBounds(140, 113, 116, 21);
 		memberLoginPanel.add(loginIdTF);
 		loginIdTF.setColumns(10);
 		
 		loginPassTF = new JPasswordField();
-		loginPassTF.setBounds(113, 197, 116, 21);
+		loginPassTF.setBounds(140, 197, 116, 21);
 		memberLoginPanel.add(loginPassTF);
 		
 		JButton logInBtn = new JButton("로그인");
@@ -184,7 +186,7 @@ public class MemberMainFrame extends JFrame {
 				}
 			}
 		});
-		logInBtn.setBounds(32, 264, 83, 23);
+		logInBtn.setBounds(59, 264, 83, 23);
 		memberLoginPanel.add(logInBtn);
 		
 		JButton joinBtn = new JButton("회원가입");
@@ -193,7 +195,7 @@ public class MemberMainFrame extends JFrame {
 				memberTabbedPane.setSelectedIndex(1);
 			}
 		});
-		joinBtn.setBounds(146, 264, 83, 23);
+		joinBtn.setBounds(173, 264, 83, 23);
 		memberLoginPanel.add(joinBtn);
 		
 		JPanel memberJoinPanel = new JPanel();
@@ -203,55 +205,55 @@ public class MemberMainFrame extends JFrame {
 		memberJoinPanel.setLayout(null);
 		
 		JLabel id = new JLabel("아이디");
-		id.setBounds(38, 70, 57, 15);
+		id.setBounds(74, 69, 57, 15);
 		memberJoinPanel.add(id);
 		
 		idTF = new JTextField();
-		idTF.setBounds(107, 67, 116, 21);
+		idTF.setBounds(143, 66, 116, 21);
 		memberJoinPanel.add(idTF);
 		idTF.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("패스워드");
-		lblNewLabel_1.setBounds(38, 121, 57, 15);
+		lblNewLabel_1.setBounds(74, 120, 57, 15);
 		memberJoinPanel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("이름");
-		lblNewLabel_2.setBounds(38, 170, 57, 15);
+		lblNewLabel_2.setBounds(74, 169, 57, 15);
 		memberJoinPanel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("주소");
-		lblNewLabel_3.setBounds(38, 219, 57, 15);
+		lblNewLabel_3.setBounds(74, 218, 57, 15);
 		memberJoinPanel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("나이");
-		lblNewLabel_4.setBounds(38, 269, 57, 15);
+		lblNewLabel_4.setBounds(74, 268, 57, 15);
 		memberJoinPanel.add(lblNewLabel_4);
 		
 		nameTF = new JTextField();
-		nameTF.setBounds(107, 167, 116, 21);
+		nameTF.setBounds(143, 166, 116, 21);
 		memberJoinPanel.add(nameTF);
 		nameTF.setColumns(10);
 		
 		addressTF = new JTextField();
-		addressTF.setBounds(107, 216, 116, 21);
+		addressTF.setBounds(143, 215, 116, 21);
 		memberJoinPanel.add(addressTF);
 		addressTF.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("결혼여부");
-		lblNewLabel.setBounds(38, 321, 57, 15);
+		lblNewLabel.setBounds(74, 320, 57, 15);
 		memberJoinPanel.add(lblNewLabel);
 		
 		passTF = new JPasswordField();
-		passTF.setBounds(107, 118, 116, 21);
+		passTF.setBounds(143, 117, 116, 21);
 		memberJoinPanel.add(passTF);
 		
 		ageCB = new JComboBox();
 		ageCB.setModel(new DefaultComboBoxModel(new String[] {"20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"}));
-		ageCB.setBounds(107, 265, 116, 23);
+		ageCB.setBounds(143, 264, 116, 23);
 		memberJoinPanel.add(ageCB);
 		
 		marriedCK = new JCheckBox("");
-		marriedCK.setBounds(107, 317, 21, 23);
+		marriedCK.setBounds(143, 316, 21, 23);
 		memberJoinPanel.add(marriedCK);
 		
 		JButton memberJoinBtn = new JButton("가입");
@@ -296,11 +298,11 @@ public class MemberMainFrame extends JFrame {
 				}
 			}
 		});
-		memberJoinBtn.setBounds(31, 387, 97, 23);
+		memberJoinBtn.setBounds(67, 386, 97, 23);
 		memberJoinPanel.add(memberJoinBtn);
 		
 		JButton memberCancelBtn = new JButton("취소");
-		memberCancelBtn.setBounds(145, 387, 97, 23);
+		memberCancelBtn.setBounds(181, 386, 97, 23);
 		memberJoinPanel.add(memberCancelBtn);
 		
 		idMsgLB = new JLabel("");
@@ -316,70 +318,151 @@ public class MemberMainFrame extends JFrame {
 		
 		JLabel id_1 = new JLabel("아이디");
 		id_1.setEnabled(false);
-		id_1.setBounds(39, 63, 57, 15);
+		id_1.setBounds(64, 64, 57, 15);
 		memberInfoPanel.add(id_1);
 		
 		infoIdTF = new JTextField();
 		infoIdTF.setEnabled(false);
 		infoIdTF.setColumns(10);
-		infoIdTF.setBounds(108, 60, 116, 21);
+		infoIdTF.setBounds(133, 61, 116, 21);
 		memberInfoPanel.add(infoIdTF);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("패스워드");
-		lblNewLabel_1_1.setBounds(39, 114, 57, 15);
+		lblNewLabel_1_1.setBounds(64, 115, 57, 15);
 		memberInfoPanel.add(lblNewLabel_1_1);
 		
 		infoPassTF = new JPasswordField();
-		infoPassTF.setBounds(108, 111, 116, 21);
+		infoPassTF.setBounds(133, 112, 116, 21);
 		memberInfoPanel.add(infoPassTF);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("이름");
 		lblNewLabel_2_1.setEnabled(false);
-		lblNewLabel_2_1.setBounds(39, 163, 57, 15);
+		lblNewLabel_2_1.setBounds(64, 164, 57, 15);
 		memberInfoPanel.add(lblNewLabel_2_1);
 		
 		infoNameTF = new JTextField();
-		infoNameTF.setEnabled(false);
-		infoNameTF.setEditable(false);
 		infoNameTF.setColumns(10);
-		infoNameTF.setBounds(108, 160, 116, 21);
+		infoNameTF.setBounds(133, 161, 116, 21);
 		memberInfoPanel.add(infoNameTF);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("주소");
 		lblNewLabel_3_1.setEnabled(false);
-		lblNewLabel_3_1.setBounds(39, 212, 57, 15);
+		lblNewLabel_3_1.setBounds(64, 213, 57, 15);
 		memberInfoPanel.add(lblNewLabel_3_1);
 		
 		infoAddressTF = new JTextField();
 		infoAddressTF.setColumns(10);
-		infoAddressTF.setBounds(108, 209, 116, 21);
+		infoAddressTF.setBounds(133, 210, 116, 21);
 		memberInfoPanel.add(infoAddressTF);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("나이");
 		lblNewLabel_4_1.setEnabled(false);
-		lblNewLabel_4_1.setBounds(39, 262, 57, 15);
+		lblNewLabel_4_1.setBounds(64, 263, 57, 15);
 		memberInfoPanel.add(lblNewLabel_4_1);
 		
 		infoAgeCB = new JComboBox();
 		infoAgeCB.setEditable(true);
 		infoAgeCB.setEnabled(false);
 		infoAgeCB.setModel(new DefaultComboBoxModel(new String[] {"20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"}));
-		infoAgeCB.setBounds(108, 258, 116, 23);
+		infoAgeCB.setBounds(133, 259, 116, 23);
 		memberInfoPanel.add(infoAgeCB);
 		
 		JLabel lblNewLabel_7 = new JLabel("결혼여부");
-		lblNewLabel_7.setBounds(39, 314, 57, 15);
+		lblNewLabel_7.setBounds(64, 315, 57, 15);
 		memberInfoPanel.add(lblNewLabel_7);
 		
 		infoMarriedCK = new JCheckBox("");
-		infoMarriedCK.setBounds(108, 310, 21, 23);
+		infoMarriedCK.setBounds(133, 311, 21, 23);
 		memberInfoPanel.add(infoMarriedCK);
+		
+		updateFormBtn = new JButton("수정");
+		updateFormBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String btnText = updateFormBtn.getText();
+				if(btnText.equals("수정")) {
+					updateFormEnable(true);
+				}else if(btnText.equals("수정취소")) {
+					displayMemberInfo(loginMember);
+					updateFormEnable(false);
+				}
+				
+			}
+		});
+		updateFormBtn.setBounds(39, 371, 97, 23);
+		memberInfoPanel.add(updateFormBtn);
+		
+		updateBtn = new JButton("저장");
+		updateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * 회원 수정
+				 */
+				/*******TextField로 부터 데이터 얻기*******/
+				try {
+				String id = infoIdTF.getText();
+				String password = new String(infoPassTF.getPassword());
+				String name = infoNameTF.getText();
+				String address = infoAddressTF.getText();
+				
+				String ageStr = (String)infoAgeCB.getSelectedItem();
+				int age = Integer.parseInt(ageStr);
+				// 나이는 배열 제일 처음에 나이를 선택해주세요 넣기
+				char married = ' ';
+				if(infoMarriedCK.isSelected()) {
+					married = 'T';
+				}else {
+					married = 'F';
+				}
+				
+				Member updateMember = new Member(id,password,name,address,age,married,null);
+				memberDaoService.memberDaoUpdate(updateMember);
+				loginMember = memberDaoService.memberDaoDetail(id);
+				updateFormEnable(false);
+				
+				}catch(Exception e1) {
+					System.out.println(e1.getMessage());
+				}
+			}
+		});
+		updateBtn.setBounds(171, 371, 97, 23);
+		memberInfoPanel.add(updateBtn);
 		
 		/***********2. 멤버필드 객체생성************/
 		memberDaoService = new MemberDaoService();
 		logoutProcess();
 		
+		
 	} // 생성자 끝
+	
+	
+	/*******************회원정보 수정 활성화, 불활성화**********************/
+	
+	private void updateFormEnable(boolean b) {
+		if(b) {
+			//활성화
+			//infoIdTF.setEnabled(true);
+			infoPassTF.setEnabled(true);
+			infoNameTF.setEditable(true);
+			infoAddressTF.setEditable(true);
+			infoAgeCB.setEnabled(true);
+			infoMarriedCK.setEnabled(true);
+			
+			updateFormBtn.setText("수정취소");
+			updateBtn.setEnabled(true);
+		}else{
+			//불활성화
+			//infoIdTF.setEnabled(false);
+			infoPassTF.setEnabled(false);
+			infoNameTF.setEditable(false);
+			infoAddressTF.setEditable(false);
+			infoAgeCB.setEnabled(false);
+			infoMarriedCK.setEnabled(false);
+			
+			//수정 & 저장버튼
+			updateFormBtn.setText("수정");
+			updateBtn.setEnabled(false);
+		}
+	}
 	
 	/*****************로그아웃 시 호출할 메소드******************/
 	private void logoutProcess() {
@@ -436,6 +519,9 @@ public class MemberMainFrame extends JFrame {
 		// 4.회원정보보기 화면
 		memberTabbedPane.setSelectedIndex(3);
 		displayMemberInfo(this.loginMember);
+		
+		// 5. 수정작업
+		updateFormEnable(false);
 	}
 	/*
 	 * 전역에 멤버필드에 영향을 받지 않도록 loginMember를 인자로 쓰기보단 Member를 매개변수로 하여 
