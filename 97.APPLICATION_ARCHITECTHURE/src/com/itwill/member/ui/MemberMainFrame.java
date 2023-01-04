@@ -8,6 +8,8 @@ import javax.swing.border.*;
 import com.itwill.member.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MemberMainFrame extends JFrame {
 	/***************1. MemberService 멤버필드선언****************/
@@ -32,6 +34,11 @@ public class MemberMainFrame extends JFrame {
 	private JTextField infoNameTF;
 	private JTextField infoAddressTF;
 	private JTabbedPane memberTabbedPane;
+	private JComboBox infoAgeCB;
+	private JCheckBox infoMarriedCK;
+	private JMenuItem loginMenuItem;
+	private JMenuItem joinMenuItem;
+	private JMenuItem logoutMenuItem;
 
 	/**
 	 * Launch the application.
@@ -57,7 +64,7 @@ public class MemberMainFrame extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\itwill\\Desktop\\이미지\\rabbit.png"));
 		setTitle("회원관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 299, 542);
+		setBounds(100, 100, 382, 585);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -65,19 +72,40 @@ public class MemberMainFrame extends JFrame {
 		JMenu memberMenu = new JMenu("회원");
 		menuBar.add(memberMenu);
 		
-		JMenuItem loginMenuItem = new JMenuItem("로그인");
+		loginMenuItem = new JMenuItem("로그인");
+		loginMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memberTabbedPane.setSelectedIndex(1);
+			}
+		});
 		memberMenu.add(loginMenuItem);
 		
-		JMenuItem joinMenuItem = new JMenuItem("회원가입");
+		joinMenuItem = new JMenuItem("회원가입");
+		joinMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				memberTabbedPane.setSelectedIndex(2);
+			}
+		});
 		memberMenu.add(joinMenuItem);
 		
-		JMenuItem logoutMenuItem = new JMenuItem("로그아웃");
+		logoutMenuItem = new JMenuItem("로그아웃");
+		logoutMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				logoutProcess();
+			}
+		});
 		memberMenu.add(logoutMenuItem);
 		
 		JSeparator separator = new JSeparator();
 		memberMenu.add(separator);
 		
 		JMenuItem exitMenuItem = new JMenuItem("종료");
+		exitMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		memberMenu.add(exitMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,6 +115,25 @@ public class MemberMainFrame extends JFrame {
 		
 		memberTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(memberTabbedPane, BorderLayout.CENTER);
+		
+		JPanel memberMainPanel = new JPanel();
+		memberTabbedPane.addTab("회원메인", null, memberMainPanel, null);
+		memberMainPanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel memberMainLB = new JLabel("");
+		memberMainLB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(loginMember == null) {
+					memberTabbedPane.setSelectedIndex(1);
+				}else {
+					memberTabbedPane.setSelectedIndex(3);
+				}
+			}
+		});
+		memberMainLB.setHorizontalAlignment(SwingConstants.CENTER);
+		memberMainLB.setIcon(new ImageIcon("C:\\Users\\itwill\\Desktop\\이미지\\캡처.PNG"));
+		memberMainPanel.add(memberMainLB, BorderLayout.NORTH);
 		
 		JPanel memberLoginPanel = new JPanel();
 		memberLoginPanel.setForeground(new Color(255, 255, 255));
@@ -123,6 +170,8 @@ public class MemberMainFrame extends JFrame {
 					if(result == 0) {
 						//로그인 성공
 						loginProcess(id);
+						loginIdTF.setText("");
+						loginPassTF.setText("");
 					}else {
 						JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 일치하지 않습니다");
 						loginIdTF.setSelectionStart(0);
@@ -150,7 +199,7 @@ public class MemberMainFrame extends JFrame {
 		JPanel memberJoinPanel = new JPanel();
 		memberJoinPanel.setBackground(new Color(171, 232, 254));
 		memberTabbedPane.addTab("회원가입", null, memberJoinPanel, null);
-		memberTabbedPane.setBackgroundAt(1, new Color(255, 255, 255));
+		memberTabbedPane.setBackgroundAt(2, new Color(255, 255, 255));
 		memberJoinPanel.setLayout(null);
 		
 		JLabel id = new JLabel("아이디");
@@ -271,6 +320,7 @@ public class MemberMainFrame extends JFrame {
 		memberInfoPanel.add(id_1);
 		
 		infoIdTF = new JTextField();
+		infoIdTF.setEnabled(false);
 		infoIdTF.setColumns(10);
 		infoIdTF.setBounds(108, 60, 116, 21);
 		memberInfoPanel.add(infoIdTF);
@@ -289,6 +339,8 @@ public class MemberMainFrame extends JFrame {
 		memberInfoPanel.add(lblNewLabel_2_1);
 		
 		infoNameTF = new JTextField();
+		infoNameTF.setEnabled(false);
+		infoNameTF.setEditable(false);
 		infoNameTF.setColumns(10);
 		infoNameTF.setBounds(108, 160, 116, 21);
 		memberInfoPanel.add(infoNameTF);
@@ -308,7 +360,10 @@ public class MemberMainFrame extends JFrame {
 		lblNewLabel_4_1.setBounds(39, 262, 57, 15);
 		memberInfoPanel.add(lblNewLabel_4_1);
 		
-		JComboBox infoAgeCB = new JComboBox();
+		infoAgeCB = new JComboBox();
+		infoAgeCB.setEditable(true);
+		infoAgeCB.setEnabled(false);
+		infoAgeCB.setModel(new DefaultComboBoxModel(new String[] {"20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"}));
 		infoAgeCB.setBounds(108, 258, 116, 23);
 		memberInfoPanel.add(infoAgeCB);
 		
@@ -316,42 +371,88 @@ public class MemberMainFrame extends JFrame {
 		lblNewLabel_7.setBounds(39, 314, 57, 15);
 		memberInfoPanel.add(lblNewLabel_7);
 		
-		JCheckBox infoMarriedCK_1 = new JCheckBox("");
-		infoMarriedCK_1.setBounds(108, 310, 21, 23);
-		memberInfoPanel.add(infoMarriedCK_1);
+		infoMarriedCK = new JCheckBox("");
+		infoMarriedCK.setBounds(108, 310, 21, 23);
+		memberInfoPanel.add(infoMarriedCK);
 		
 		/***********2. 멤버필드 객체생성************/
 		memberDaoService = new MemberDaoService();
+		logoutProcess();
 		
 	} // 생성자 끝
 	
+	/*****************로그아웃 시 호출할 메소드******************/
+	private void logoutProcess() {
+		/***************로그인 아웃시 해야할일************
+		1. 로그인 성공한 멤버객체 멤버필드에서 제거(null)
+		2. MemberMainFrame타이틀 변경
+		3. 로그인, 회원가입탭 활성화 /회원정보탭 불활성화
+		   메뉴바 로그인, 회원가입 활성화 /로그아웃 불활성화
+		4. 메인 화면전환
+		**************************************************/
+		//1. 로그인 성공한 멤버객체 멤버필드에서 제거(null)
+		this.loginMember = null;
+		
+		//2. MemberMainFrame타이틀 변경
+		setTitle("회원관리");
+		
+		//3. 로그인, 회원가입탭 활성화, 회원정보탭 불활성화
+		memberTabbedPane.setEnabledAt(1,true);
+		memberTabbedPane.setEnabledAt(2,true);
+		memberTabbedPane.setEnabledAt(3,false);
+		loginMenuItem.setEnabled(true);
+		joinMenuItem.setEnabled(true);
+		logoutMenuItem.setEnabled(false);
+		
+		//4.메인 화면전환
+		memberTabbedPane.setSelectedIndex(0);
+	}
 	
 	
 	
-	
+	/***************로그인 성공 시 호출할 메소드*****************/
 	private void loginProcess(String id) throws Exception {
-
 		/***************로그인 성공시 해야할일************
 		1. 로그인 성공한 멤버객체 멤버필드에 저장
 		2. MemberMainFrame타이틀 변경
 		3. 로그인, 회원가입탭 불활성화
+		   메뉴바 로그인, 회원가입 활성화 /로그아웃 불활성화
 		4. 회원정보보기 화면전환
 		**************************************************/
 		// 1. 로그인 성공한 멤버객체 멤버필드에 저장
 		this.loginMember = memberDaoService.memberDaoDetail(id);
+		
 		// 2. MemberMainFrame타이틀 변경
 		setTitle( id + " 님 로그인");
+		
 		// 3.로그인 화면, 회원가입화면 불활성화
-		memberTabbedPane.setEnabledAt(0,false);
 		memberTabbedPane.setEnabledAt(1,false);
+		memberTabbedPane.setEnabledAt(2,false);
+		memberTabbedPane.setEnabledAt(3,true);
+		loginMenuItem.setEnabled(false);
+		joinMenuItem.setEnabled(false);
+		logoutMenuItem.setEnabled(true);
+		
 		// 4.회원정보보기 화면
-		memberTabbedPane.setSelectedIndex(2);
-		
+		memberTabbedPane.setSelectedIndex(3);
+		displayMemberInfo(this.loginMember);
+	}
+	/*
+	 * 전역에 멤버필드에 영향을 받지 않도록 loginMember를 인자로 쓰기보단 Member를 매개변수로 하여 
+	 * 멤버가 갖고있는 멤버필드에 접근한 후 메소드를 호출하는 방향으로 작성해야함
+	 */
+	private void displayMemberInfo(Member member) {
 		/****회원상세데이타보여주기*****/
-		infoIdTF.setText(loginMember.getM_id());
-		infoPassTF.setText(loginMember.getM_password());
-		infoNameTF.setText(loginMember.getM_name());
-		infoAddressTF.setText(loginMember.getM_address());
+		infoIdTF.setText(member.getM_id());
+		infoPassTF.setText(member.getM_password());
+		infoNameTF.setText(member.getM_name());
+		infoAddressTF.setText(member.getM_address());
+		infoAgeCB.setSelectedItem(member.getM_age()+"");
 		
+		if(member.getM_married() == 'T') {
+			infoMarriedCK.setSelected(true);
+		}else {
+			infoMarriedCK.setSelected(false);
+		}
 	}
 }
