@@ -57,7 +57,12 @@ select *
     on oi.p_no = p.p_no
 where userid = 'guard1' and o.o_no = 1;
 
+--3. 로그인한 멤버(guard1) 주문 한개 삭제
 
+delete from orders where o_no = 1;
+
+--4. 로그인한 멤버(guard1) 주문 전체삭제
+delete from orders where userid = 'guard1';
 
 
 
