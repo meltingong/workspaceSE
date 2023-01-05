@@ -183,8 +183,8 @@
                                   <defaultValue></defaultValue>
                                 </net.java.amateras.db.visual.model.ColumnModel>
                                 <net.java.amateras.db.visual.model.ColumnModel>
-                                  <columnName>o_pName</columnName>
-                                  <logicalName>o_pName</logicalName>
+                                  <columnName>o_desc</columnName>
+                                  <logicalName>o_desc</logicalName>
                                   <columnType class="net.java.amateras.db.dialect.ColumnType">
                                     <name>VARCHAR2</name>
                                     <logicalName>String</logicalName>
