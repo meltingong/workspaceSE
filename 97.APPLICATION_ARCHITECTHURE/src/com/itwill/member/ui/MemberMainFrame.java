@@ -50,6 +50,8 @@ public class MemberMainFrame extends JFrame {
 	private JButton updateBtn;
 	private JTable memberListTB;
 	private JButton memberDeleteBtn;
+	private JList memberListLT;
+	private JComboBox memberListCB;
 
 	/**
 	 * Launch the application.
@@ -476,17 +478,17 @@ public class MemberMainFrame extends JFrame {
 		));
 		scrollPane.setViewportView(memberListTB);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"유재석", "이동욱", "김철수", "채성아", "나미리"}));
-		comboBox.setBounds(195, 202, 112, 23);
-		memberAdminPanel.add(comboBox);
+		memberListCB = new JComboBox();
+		memberListCB.setModel(new DefaultComboBoxModel(new String[] {"유재석", "이동욱", "김철수", "채성아", "나미리"}));
+		memberListCB.setBounds(195, 202, 112, 23);
+		memberAdminPanel.add(memberListCB);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(12, 204, 130, 195);
 		memberAdminPanel.add(scrollPane_1);
 		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
+		memberListLT = new JList();
+		memberListLT.setModel(new AbstractListModel() {
 			String[] values = new String[] {"유재석", "이동욱", "김철수", "채성아", "나미리", "유재석", "이동욱", "김철수", "채성아", "나미리", "유재석", "이동욱", "김철수", "채성아", "나미리"};
 			public int getSize() {
 				return values.length;
@@ -495,7 +497,7 @@ public class MemberMainFrame extends JFrame {
 				return values[index];
 			}
 		});
-		scrollPane_1.setViewportView(list);
+		scrollPane_1.setViewportView(memberListLT);
 		
 		JButton memberListBtn = new JButton("회원리스트보기");
 		memberListBtn.addActionListener(new ActionListener() {
@@ -538,8 +540,9 @@ public class MemberMainFrame extends JFrame {
 	
 	/************************************/
 	private void displayMemberList() {
-		/*************회원리스트 보기*************/
+		
 		try {
+			/*************회원리스트 보기[Jtable]*************/
 			List<Member> memberList = memberDaoService.memberList();
 			Vector columnVector = new Vector();
 			columnVector.add("아이디");
@@ -568,10 +571,27 @@ public class MemberMainFrame extends JFrame {
 			memberListTB.setModel(tableModel);
 			memberDeleteBtn.setEnabled(false);
 			
+		/*************회원리스트 보기[JList]*************/
+			DefaultListModel listModel = new DefaultListModel();
+			for(Member member : memberList) {
+				listModel.addElement(member.getM_id());
+			}
+			
+			memberListLT.setModel(listModel);
+			
+		/*************회원리스트 보기[JComboBox]*************/
+			DefaultComboBoxModel comboBoxModel = new DefaultComboBoxModel();
+			for(Member member : memberList) {
+				comboBoxModel.addElement(member.getM_name() + "[" + member.getM_id() + "]");
+			}
+			memberListCB.setModel(comboBoxModel);
+			
+			
 		}catch(Exception e1) {
 			e1.printStackTrace();
 			System.out.println(e1.getMessage());
 		}
+		
 	}
 	
 	
