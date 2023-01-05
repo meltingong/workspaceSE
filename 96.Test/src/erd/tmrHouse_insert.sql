@@ -4,10 +4,12 @@ insert into member(m_id, m_pw, m_name, m_birth, m_phone, m_address) values('bbbb
 insert into member(m_id, m_pw, m_name, m_birth, m_phone, m_address) values('cccc','dddd','짱구','921225','9512-7584','떡잎마을');
 
 /*********************product insert*************************/
-insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'조립식 식탁','150000','','직접 조립하는 가구DIY');
-insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'아일랜드 식탁','300000','','튼튼하고 세련된 식탁');
-insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'파스텔톤 커튼','30000','','산뜻한 색깔의 커튼');
-
+insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'조립식 식탁','150000','dafult.jpg','직접 조립하는 가구DIY');
+insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'아일랜드 식탁','300000','dafult.jpg','튼튼하고 세련된 식탁');
+insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'파스텔톤 커튼','30000','dafult.jpg','산뜻한 색깔의 커튼');
+insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'다육이','15000','dafult.jpg','귀여운 식물');
+insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'머쉬룸스탠드','20000','dafult.jpg','버섯모양의 느낌있는 조명');
+insert into product(p_no, p_name, p_price, p_img, p_desc) values(producat_p_no_SEQ.nextval,'파스텔톤 커튼','30000','dafult.jpg','산뜻한 색깔의 커튼');
 /*********************cart insert**********************/
 --aaaa
 insert into cart(cart_no, cart_qty, m_id, p_no) values(cart_cart_no_SEQ.nextval,2,'aaaa',1);
