@@ -17,4 +17,16 @@ insert into cart(cart_no, cart_qty, m_id, p_no) values(cart_cart_no_SEQ.nextval,
 insert into cart(cart_no, cart_qty, m_id, p_no) values(cart_cart_no_SEQ.nextval,2,'bbbb',3);
 insert into cart(cart_no, cart_qty, m_id, p_no) values(cart_cart_no_SEQ.nextval,1,'bbbb',1);
 
+/*********************orders insert*********************/
+/*
+aaa님이
+    제품번호 1번 1개
+    제품번호 3번 1개
+*/
+
+
+
+
+
+
 
