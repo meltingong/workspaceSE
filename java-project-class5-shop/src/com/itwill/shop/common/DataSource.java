@@ -1,4 +1,4 @@
-package com.itiwill.shop.common;
+package com.itwill.shop.common;
 
 import java.io.*;
 import java.sql.*;
