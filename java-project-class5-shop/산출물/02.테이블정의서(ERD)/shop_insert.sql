@@ -54,7 +54,7 @@ insert into order_item(oi_no, oi_qty, o_no, p_no) values (order_item_oi_no_SEQ.n
 -- 제품번호 4번 4마리 제품을 주문
 insert into order_item(oi_no, oi_qty, o_no, p_no) values (order_item_oi_no_SEQ.nextval,4,orders_o_no_SEQ.currval,4);
 
-
+commit;
 
 
 
