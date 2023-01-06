@@ -90,7 +90,7 @@ public class MemberDao {
 		pstmt.setString(1, m_id);
 		ResultSet rs = pstmt.executeQuery();
 		
-		while(rs.next()) {
+		if(rs.next()) {
 			
 			String id = rs.getString("m_id");
 			String m_password = rs.getString("m_password");
@@ -102,7 +102,7 @@ public class MemberDao {
 			Date m_regdate = rs.getDate("m_regdate");
 			
 			findMember = new Member(id,m_password,m_name,m_address,m_age,married,m_regdate);
-			break;
+		
 		}
 		rs.close();
 		pstmt.close();
