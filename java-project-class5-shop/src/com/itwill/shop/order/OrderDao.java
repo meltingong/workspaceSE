@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.itwill.shop.common.DataSource;
+import com.itwill.shop.product.Product;
 
 public class OrderDao {
 	
@@ -157,7 +158,26 @@ O_NO   O_DESC       O_DATE      O_PRICE USERID OI_NO  OI_QTY  O_NO  P_NO  P_NAME
 1 	  비글외1마리   2023/01/06  1550000 guard1   1      1      1     1    비글     550000 bigle.png 기타 상세 정보 등...                                                                                                                                                                                                 0
 1 	  비글외1마리   2023/01/06  1550000 guard1   2      2      1     2    달마시안 500000 dalma.jpg 기타 상세 정보 등...                                                                                                                                                                                                 0
 */
-		
+		if(rs.next()) {
+			order=new Order(rs.getInt("o_no"),
+							rs.getString("o_desc"),
+							rs.getDate("o_date"),
+							rs.getInt("o_price"),
+							rs.getString("userid"));
+			do {
+				order.getOrderItemList()
+					.add(new OrderItem( rs.getInt("oi_no"),
+										rs.getInt("oi_qty"),
+										rs.getInt("o_no"),
+										new Product(rs.getInt("p_no"),
+													rs.getString("p_name"), 
+													rs.getInt("p_price"), 
+													rs.getString("p_image"), 
+													rs.getString("p_desc"), 
+													rs.getInt("p_click_count"))
+										));
+			}while(rs.next());
+		}
 		
 		
 		
