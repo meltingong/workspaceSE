@@ -1,6 +1,8 @@
 package com.itwill.shop.test;
 
-import java.sql.Date;
+
+
+import java.sql.*;
 import java.util.ArrayList;
 
 import com.itwill.shop.order.Order;
@@ -9,7 +11,11 @@ import com.itwill.shop.order.OrderItem;
 import com.itwill.shop.product.Product;
 import com.itwill.shop.product.ProductDao;
 
+import com.itwill.shop.order.OrderDao;
+
+
 public class OrderDaoTestMain {
+
 
 	public static void main(String[] args) throws Exception{
 		OrderDao orderDao=new OrderDao();
@@ -34,7 +40,6 @@ public class OrderDaoTestMain {
 		/*
 		 * 2.cart에서 주문
 		 */
-		
 		
 		
 	}
