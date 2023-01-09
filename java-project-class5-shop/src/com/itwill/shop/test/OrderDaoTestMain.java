@@ -1,5 +1,6 @@
 package com.itwill.shop.test;
 
+import com.itwill.shop.order.Order;
 import com.itwill.shop.order.OrderDao;
 
 public class OrderDaoTestMain {
@@ -10,7 +11,10 @@ public class OrderDaoTestMain {
 		 */
 		OrderDao orderDao = new OrderDao();
 		
-		System.out.println(orderDao.findByOrderNo("guard1",2));
+		orderDao.insert(new Order(0,"비글외1마리",null,1050000,"bbbb"));
+		
+		//System.out.println(orderDao.findByOrderNo("guard1",2));
+		System.out.println(orderDao.findByOrderNo("bbbb",4));
 	}
 
 }
