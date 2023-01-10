@@ -6,8 +6,19 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class ShopMainFrame extends JFrame {
-
+	/*
+	 * Panel상수
+	 */
+	public static final int PRODUCT_LIST_PANEL = 1;
+	public static final int PRODUCT_DETAIL_PANEL = 2;
+	public static final int USER_JOIN_PANEL = 3;
+	public static final int USER_INFO_PANEL = 4;
+	
+	
 	private JPanel contentPane;
+	private JTabbedPane shopTabbedPane;
+	private JTabbedPane productTabbedPane;
+	private JTabbedPane memberTabbedPane;
 	
 	/*
 	 * 1. Service 객체선언
@@ -75,16 +86,16 @@ public class ShopMainFrame extends JFrame {
 		globlaMemberMenuButton.setIcon(new ImageIcon(ShopMainFrame.class.getResource("/images/user.png")));
 		globalSouthMenuPanel.add(globlaMemberMenuButton);
 		
-		JTabbedPane shopTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		shopTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(shopTabbedPane, BorderLayout.CENTER);
 		
-		JTabbedPane productTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		productTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		shopTabbedPane.addTab("제품", null, productTabbedPane, null);
 		
 		PopularProductPanel popularProductPanel = new PopularProductPanel();
 		productTabbedPane.addTab("인기제품", null, popularProductPanel, null);
 		
-		JTabbedPane memberTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		memberTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		shopTabbedPane.addTab("회원", null, memberTabbedPane, null);
 		
 		MemberJoinPanel memberJoinPanel = new MemberJoinPanel();
@@ -94,5 +105,25 @@ public class ShopMainFrame extends JFrame {
 		 */
 		
 	} // 생성
-
+	/*********************패널변경메소드********************/
+	
+	public void changePanel(int panel_no) {
+		if(panel_no == PRODUCT_LIST_PANEL) {
+			shopTabbedPane.setSelectedIndex(0);
+			productTabbedPane.setSelectedIndex(0);
+		}else if(panel_no == PRODUCT_DETAIL_PANEL) {
+			shopTabbedPane.setSelectedIndex(0);
+			productTabbedPane.setSelectedIndex(1);
+		}else if(panel_no == USER_INFO_PANEL) {
+			shopTabbedPane.setSelectedIndex(1);
+			productTabbedPane.setSelectedIndex(1);
+		}else if(panel_no == USER_JOIN_PANEL){
+			shopTabbedPane.setSelectedIndex(1);
+			productTabbedPane.setSelectedIndex(0);
+		}
+	}
+	
+	
+	
+	
 }

@@ -3,7 +3,7 @@ package com.itwill.shop.ui;
 import javax.swing.*;
 
 public class MemberJoinPanel extends JPanel {
-
+	ShopMainFrame frame;
 	/**
 	 * Create the panel.
 	 */
