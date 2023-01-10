@@ -178,9 +178,7 @@ O_NO   O_DESC       O_DATE      O_PRICE USERID OI_NO  OI_QTY  O_NO  P_NO  P_NAME
 										));
 			}while(rs.next());
 		}
-		
-		
-		
+
 		return order;
 	}
 	
