@@ -2,8 +2,9 @@ package com.itwill.shop.test;
 
 
 
-import java.sql.*;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.itwill.shop.order.Order;
 import com.itwill.shop.order.OrderDao;
@@ -17,10 +18,17 @@ import com.itwill.shop.order.OrderDao;
 public class OrderDaoTestMain {
 
 
-	public static void main(String[] args) throws Exception{
-		OrderDao orderDao=new OrderDao();
-		//System.out.println(orderDao.findByUserId("guard1"));
-		System.out.println(orderDao.findByOrderNo("guard1",2));
+	public static void main(String[] args) throws Exception {
+		/*
+		 * 주문1개보기
+		 */
+		OrderDao orderDao = new OrderDao();
+		
+		orderDao.insert(new Order(0,"비글외1마리",null,1050000,"bbbb"));
+		
+		//System.out.println(orderDao.findByOrderNo("guard1",2));
+		System.out.println(orderDao.findByOrderNo("bbbb",4));
+
 		
 		/*
 		 * 1.상품에서직접주문
@@ -40,7 +48,6 @@ public class OrderDaoTestMain {
 		/*
 		 * 2.cart에서 주문
 		 */
-		
 		
 	}
 
