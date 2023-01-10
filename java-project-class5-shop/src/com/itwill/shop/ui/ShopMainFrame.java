@@ -8,7 +8,14 @@ import javax.swing.border.*;
 public class ShopMainFrame extends JFrame {
 
 	private JPanel contentPane;
-
+	
+	/*
+	 * 1. Service 객체선언
+	 */
+	/*
+	 * 2. 로그인 유저 객체 선언
+	 */
+	
 	/**
 	 * Launch the application.
 	 */
@@ -82,6 +89,10 @@ public class ShopMainFrame extends JFrame {
 		
 		MemberJoinPanel memberJoinPanel = new MemberJoinPanel();
 		memberTabbedPane.addTab("회원가입", null, memberJoinPanel, null);
-	}
+		/*
+		 * 3. Service 객체선언
+		 */
+		
+	} // 생성
 
 }
