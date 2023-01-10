@@ -15,12 +15,23 @@ public class MemberInfoPanel extends JPanel {
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("가입");
+<<<<<<< HEAD
 		btnNewButton.setBounds(30, 307, 97, 23);
+=======
+		btnNewButton.setBounds(12, 327, 97, 23);
+>>>>>>> branch 'master' of https://github.com/meltingong/workspaceSE.git
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("취소");
+<<<<<<< HEAD
 		btnNewButton_1.setBounds(174, 306, 97, 23);
 		add(btnNewButton_1);
+=======
+		btnNewButton_1.setBounds(140, 327, 97, 23);
+		btnNewButton.setBounds(37, 405, 97, 23);
+		add(btnNewButton);
+
+>>>>>>> branch 'master' of https://github.com/meltingong/workspaceSE.git
 
 	}
 	public void setFrame(ShopMainFrame frame) {
