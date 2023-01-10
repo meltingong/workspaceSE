@@ -101,8 +101,11 @@ public class ShopMainFrame extends JFrame {
 		MemberJoinPanel memberJoinPanel = new MemberJoinPanel();
 		memberTabbedPane.addTab("회원가입", null, memberJoinPanel, null);
 		/*
-		 * 3. Service 객체선언
+		 * ShopMainFrame참조를 Panel에 넘겨줌
 		 */
+		memberJoinPanel.frame = this;
+		 
+		
 		
 	} // 생성
 	/*********************패널변경메소드********************/
