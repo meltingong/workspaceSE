@@ -17,7 +17,7 @@ public class ProductDetailPanel extends JPanel {
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("상품리스트 화면전환");
-		btnNewButton.setBounds(51, 331, 194, 23);
+		btnNewButton.setBounds(104, 376, 194, 23);
 		add(btnNewButton);
 
 	}
