@@ -15,11 +15,11 @@ public class MemberInfoPanel extends JPanel {
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("가입");
-		btnNewButton.setBounds(37, 405, 97, 23);
+		btnNewButton.setBounds(30, 307, 97, 23);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("취소");
-		btnNewButton_1.setBounds(228, 405, 97, 23);
+		btnNewButton_1.setBounds(174, 306, 97, 23);
 		add(btnNewButton_1);
 
 	}

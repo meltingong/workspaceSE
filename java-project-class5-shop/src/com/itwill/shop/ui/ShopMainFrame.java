@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.itwill.shop.cart.CartService;
 import com.itwill.shop.order.OrderService;
-import com.itwill.shop.product.ProductService;
+import com.itwill.shop.product.*;
 import com.itwill.shop.user.User;
 import com.itwill.shop.user.UserService;
 
@@ -149,13 +149,17 @@ public class ShopMainFrame extends JFrame {
 		
 	}//생성
 	/***********패널변경메쏘드********/
-	public void changePanel(int panel_no) {
+	public void changePanel(int panel_no, Object data) {
 		if(panel_no==PRODUCT_LIST_PANEL) {
 			shopTabbedPane.setSelectedIndex(0);
 			productTabbedPane.setSelectedIndex(0);
 		}else if(panel_no==PRODUCT_DETAIL_PANEL) {
+			/*Product product = (Product)data;
+			System.out.println("recv product" + product);*/
+			
 			shopTabbedPane.setSelectedIndex(0);
 			productTabbedPane.setSelectedIndex(1);
+			
 		}else if(panel_no==USER_INFO_PANEL) {
 			shopTabbedPane.setSelectedIndex(1);
 			productTabbedPane.setSelectedIndex(1);
