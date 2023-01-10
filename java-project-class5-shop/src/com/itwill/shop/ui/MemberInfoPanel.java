@@ -20,7 +20,9 @@ public class MemberInfoPanel extends JPanel {
 		
 		JButton btnNewButton_1 = new JButton("취소");
 		btnNewButton_1.setBounds(140, 327, 97, 23);
-		add(btnNewButton_1);
+		btnNewButton.setBounds(37, 405, 97, 23);
+		add(btnNewButton);
+
 
 	}
 	public void setFrame(ShopMainFrame frame) {
