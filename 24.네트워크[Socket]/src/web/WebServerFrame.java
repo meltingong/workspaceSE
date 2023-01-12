@@ -108,7 +108,7 @@ public class WebServerFrame extends JFrame {
 						addressListServlet.service(out);
 					}
 					/***********자바코드 end**********/
-					
+					out.flush();
 				
 					
 					displayLog("4.WebServerThread:소켓으로부터 생성된OutputStream에서버시간쓰기");

@@ -11,7 +11,6 @@ public class HelloServlet {
 		out.println("<h3>Hello Servlet!</h3><hr>");
 		out.println("</body>");
 		out.println("</html>");
-		out.flush();
 
 	}
 	
