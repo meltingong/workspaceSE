@@ -8,6 +8,13 @@ import java.awt.event.ActionEvent;
 
 public class MemberJoinPanel extends JPanel {
 	ShopMainFrame frame;
+	
+	
+	public void setFrame(ShopMainFrame frame) {
+		this.frame = frame;
+	}
+
+
 	/**
 	 * Create the panel.
 	 */
