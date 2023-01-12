@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -73,7 +76,7 @@ public class WebServerFrame extends JFrame {
 	
 	/*********************************************/
 	public class WebServerThread extends Thread{
-		
+		int requestCount=0;
 		
 		@Override
 		public void run() {
@@ -91,23 +94,23 @@ public class WebServerFrame extends JFrame {
 					PrintWriter out=
 							new PrintWriter(
 									new OutputStreamWriter(
-											socket.getOutputStream()));
+											socket.getOutputStream(),"UTF-8"));
 					displayLog("3.WebServerThread:소켓으로부터 OutputStream생성");
 					
-					while(true) {
-						String readLine=br.readLine();
-						System.out.println(readLine);
-						if(readLine.startsWith("User-Agent:")) {
-							break;
-						}
+					String readLine=br.readLine();
+					System.out.println(readLine);
+					if(readLine.startsWith("GET")) {
+							String[] requestHeaderArray = readLine.split(" ");
+							System.out.println(requestHeaderArray[0]);
+							System.out.println(requestHeaderArray[1]);
+							System.out.println(requestHeaderArray[2]);
+							
 					}
 					
 					
-					/**************************/
-					int no=(int)(Math.random()*3)+1;
-					out.println(no);
-					/***************************/
-					out.flush();
+					
+					
+				
 					
 					displayLog("4.WebServerThread:소켓으로부터 생성된OutputStream에서버시간쓰기");
 					socket.close();
