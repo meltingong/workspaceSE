@@ -101,7 +101,7 @@ public class WebServerFrame extends JFrame {
 					displayLog("3.WebServerThread:소켓으로부터 OutputStream생성");
 					
 					/***********자바코드 실행**********/
-					int no = (int)(Math.random()*2)+1;
+					int no = (int)(Math.random()*2+1);
 					if(no%2 == 0) {
 						helloServlet.service(out);
 					}else {
