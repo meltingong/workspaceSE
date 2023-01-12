@@ -21,8 +21,9 @@ public class AddressListServlet {
 		
 		ResultSet rs=
 				stmt.executeQuery(selectManySql);
+		
 		if(rs.next()) {
-			 do{
+			do{
 				int no=rs.getInt("no");
 				String name=rs.getString("name");
 				String phone=rs.getString("phone");
