@@ -12,7 +12,7 @@ public class AddressListServlet {
 		String selectManySql=
 				"select no,name,phone,address from address";
 		String driverClass="oracle.jdbc.OracleDriver";
-		String url="jdbc:oracle:thin:@192.168.15.09:1521:XE";
+		String url="jdbc:oracle:thin:@192.168.15.9:1521:XE";
 		String user="scott";
 		String password="tiger";
 		Class.forName(driverClass);
